@@ -1,0 +1,1556 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Responsive Bootstrap Advance Admin Template</title>
+<link rel="stylesheet" type="text/css" href="../css/default.css" />
+	<link rel="stylesheet" type="text/css" href="../css/component.css" />
+	<script src="../js/modernizr.custom.js"></script>
+<!-- BOOTSTRAP STYLES-->
+
+<!-- FONTAWESOME STYLES-->
+<link href="../assets/css/font-awesome.css" rel="stylesheet" />
+<!--CUSTOM BASIC STYLES-->
+<link href="../assets/css/basic.css" rel="stylesheet" />
+<!--CUSTOM MAIN STYLES-->
+<link href="../assets/css/custom.css" rel="stylesheet" />
+<link href="../css/base.css" type="text/css" rel="stylesheet" />
+
+<link href="../assets/css/bootstrap.css" rel="stylesheet" />
+<!-- GOOGLE FONTS-->
+<link href='http://fonts.googleapis.com/css?family=Open+Sans'
+	rel='stylesheet' type='text/css' />
+<style>
+.table th, td {
+	text-align: center;
+}
+
+#more{
+		color: #fff;
+background-color: #428bca;
+border-color: #357ebd;
+}
+
+#returnBook {
+   padding: 10px 16px;
+font-size: 18px;
+line-height: 1.33;
+border-radius: 6px;
+color: #333;
+
+border-color: #adadad;
+}
+.test{
+display: inline-block;
+padding: 6px 12px;
+margin-bottom: 0;
+font-size: 14px;
+font-weight: normal;
+line-height: 1.42857143;
+text-align: center;
+white-space: nowrap;
+vertical-align: middle;
+cursor: pointer;
+-webkit-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+background-image: none;
+border: 1px solid transparent;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+border-radius: 4px;}
+
+</style>
+</head>
+<body onload="judgeState()">
+					<div class="md-modal md-effect-15" id="modal-15">
+			<div class="md-content">
+				<h3>Return Book</h3>
+				<p id="rowIndex" style="display:none;"></p>
+				<div>
+					 <div class="form-group" id="checkReader">
+					 <label for="ID">Reader School Work Number</label>
+    				<input type="text" class="form-control" id="ID" placeholder="Please input the student ID">
+    				<br/>
+    				<button class="btn btn-success" onclick="checkReader()">Check Reader</button>
+    				</div>
+    				<div id="showReader" style="display:none;">
+    					<ul>
+						<li><strong>Name:</strong> <span id="readerName" >a windows</span></li>
+						<li><strong>ID:</strong><span id="readerID">a modal </span></li>
+						<li><strong>Class:</strong> <span id="readerClass">click </span></li>
+						<li><strong>Email:</strong> <span id="readerEmail">modal windows wil</span></li>
+						<li><strong>Type:</strong><span id="readerType">a modal</span></li>
+						<li><strong>Borrow Books:</strong></li>
+						<li><strong>Book 1:</strong> <span id="book1">modal windows will </span></li>
+						<li><strong>Book 2:</strong><span id="book2">a modal </span></li>
+						<li><button id="borrowABook" onclick="returnBookItem()">Return Book</button></li>
+					</ul>
+    				</div>
+    				
+    				 <div id="first"  style="display:none;">
+					 <label for="firstBook">Book One ISBN</label>
+    				<input type="text" class="form-control" id="firstBook" placeholder="Please input the first book ISBN">
+    				<br/>
+    				<button  id="borrowBookItem2" class="md-close" onclick="borrowBookItem2()" style="display:none;">Sure</button>
+    				</div>
+    				  <div id="second"  style="display:none;" >
+					 <label for="secondBook">Book Two ISBN</label>
+    				<input type="text" class="form-control" id="secondBook" placeholder="Please input the second book ISBN">
+					<br/>
+					<button  id="borrowBookItem3" class="md-close" onclick="returnBookItem3()" style="display:none;">Sure</button>
+					</div>
+					<button id ="more2" class="md-close"  style="display:none;">Close me!</button>
+				</div>
+			</div>
+		</div>
+	<div id="wrapper" >
+		<nav class="navbar navbar-default navbar-cls-top " role="navigation"
+			style="margin-bottom: 0;background:#00CA79;">
+			<div class="navbar-header" >
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target=".sidebar-collapse">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="index.html">EMPLOYEE</a>
+			</div>
+
+			<div class="header-right" >
+
+				 <a href="#"
+					class="btn btn-danger" title="Logout" onclick="logout()"><i
+					class="fa fa-exclamation-circle fa-2x"></i></a>
+
+
+			</div>
+		</nav>
+		<!-- /. NAV TOP  -->
+		<nav class="navbar-default navbar-side" role="navigation">
+			<div class="sidebar-collapse">
+				<ul class="nav" id="main-menu">
+					<li>
+						<div class="user-img-div">
+							<img src="../assets/img/user.png" class="img-thumbnail" />
+
+							<div class="inner-text">
+								<span id="userName"></span>
+							</div>
+						</div>
+
+					</li>
+
+
+					
+					<li>
+                        <a href="employee-reader-information.html"><i class="glyphicon glyphicon-user "></i>Reader Management</a>                  
+                    </li>
+                     <li>
+                        <a href="employee-book-information.html"><i class="glyphicon glyphicon-book "></i>Book Management </a>
+                    </li>
+                    <li>
+                        <a href="employee-return-book.html" style="background:#00CA79"><i class="fa fa-bicycle "></i>Renew & Return </a>
+					</li>
+
+				</ul>
+
+			</div>
+
+		</nav>
+		<!-- /. NAV SIDE  -->
+
+		<div id="page-wrapper">
+			<div id="page-inner">
+				<div class="row">
+					<div class="col-md-12">
+						<h1 class="page-head-line">Book Borrowing Management</h1>
+						<h1 class="page-subhead-line">
+							<button id="queryBook" class="btn btn-default btn-lg" type="button"
+								style="margin-right: 18px;" onclick="queryBook()">Unreturned
+								Book</button>
+								<button  id="returnBook" class="test" data-modal="modal-15" onclick="returnBook()">Return
+								Book</button>
+							<button id="addBook" class="btn btn-default btn-lg"
+								type="button" style="margin-right: 18px;" onclick="addBook()">Renew
+								Book</button>
+									<button id="deleteBook" class="btn btn-default btn-lg"
+								type="button" style="margin-right: 18px;" onclick="deleteBook()">Returned
+								Book</button>
+							<button id="modifyBook" class="btn btn-default btn-lg"
+								type="button" style="margin-right: 18px;display:none;" onclick="modifyBook() ">Query Borrowing
+								Record</button>
+						
+						</h1>
+					</div>
+				</div>
+				<div class="row" id="queryBookDiv" style="display: block;">
+					<div class="form-group input-group col-md-6 col-md-offset-1" >
+							<span  class="input-group-addon" style="background:none;border:none;"><div class="btn-group" style="width:10px;">
+  <button id="type" style="width:110px;" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    &nbsp&nbspBook &nbsp Name &nbsp
+  </button>
+  <ul class="dropdown-menu">
+    <li><a  href="#" onclick='changeType1()'>Book Name</a></li>
+    <li><a href="#" onclick='changeType2()'>Reader ID</a></li>
+    
+
+  </ul>
+  </div>
+</span>	
+							<span class="input-group-btn"> 
+							<input id="keywords" type="text"
+							class="form-control" placeholder="Enter Keywords" /> 
+								<button id="search" class="btn btn-primary" onclick="searchBook()">
+							 		<i class="fa fa-gear fa-spin"></i>&nbsp;&nbsp;SEARCH HERE
+								</button>
+						   </span>
+					</div>
+					<br />
+					
+					<table id="bookInformation" class="table table-striped">
+						<thead>
+							<tr>
+								<th>Order Number</th>
+								<th>Book Name</th>
+								<th>Reader ID</th>
+								<th>Borrow Time</th>
+								<th>Required Time</th>
+								<th>State</th>
+								
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+					
+				</div>
+				<div class="row" id="modifyBookDiv" style="display: none;">
+					<div class="form-group input-group col-md-6 col-md-offset-1" >
+							<span  class="input-group-addon" style="background:none;border:none;"><div class="btn-group" style="width:10px;">
+  <button id="type2"  style="width:110px;"  type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    &nbsp&nbspBook &nbsp Name &nbsp
+  </button>
+  <ul class="dropdown-menu">
+    <li><a  href="#" onclick='changeType3()'>Book Name</a></li>
+    <li><a href="#" onclick='changeType4()'>Reader ID</a></li>
+    
+
+  </ul>
+  </div>
+</span>	
+							<span class="input-group-btn"> 
+							<input id="keywords2" type="text"
+							class="form-control" placeholder="Enter Keywords" /> 
+								<button id="search" class="btn btn-primary" onclick="searchBook2()">
+							 		<i class="fa fa-gear fa-spin"></i>&nbsp;&nbsp;SEARCH HERE
+								</button>
+						   </span>
+					</div>
+					<br />
+					
+					<table id="bookInformation2" class="table table-striped">
+						<thead>
+							<tr>
+								<th>Order Number</th>
+								<th>Book Name</th>
+								<th>Reader ID</th>
+								<th>Borrow Time</th>
+								<th>Required Time</th>
+								<th>State</th>
+								<th >Operation</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+
+				</div>
+
+				<div class="row" id="deleteBookDiv" style="display: none;">
+	<div class="form-group input-group col-md-6 col-md-offset-1" >
+							<span  class="input-group-addon" style="background:none;border:none;"><div class="btn-group" style="width:10px;">
+  <button id="type3" style="width:110px;"   type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    &nbsp&nbspBook &nbsp Name &nbsp
+  </button>
+  <ul class="dropdown-menu">
+    <li><a  href="#" onclick='changeType5()'>Book Name</a></li>
+    <li><a href="#" onclick='changeType6()'>Reader ID</a></li>
+    
+
+  </ul>
+  </div>
+</span>	
+							<span class="input-group-btn"> 
+							<input id="keywords3" type="text"
+							class="form-control" placeholder="Enter Keywords" /> 
+								<button id="search" class="btn btn-primary" onclick="searchBook3()">
+							 		<i class="fa fa-gear fa-spin"></i>&nbsp;&nbsp;SEARCH HERE
+								</button>
+						   </span>
+					</div>
+					<br />
+					
+					<table id="bookInformation3" class="table table-striped">
+						<thead>
+							<tr>
+								<th>Order Number</th>
+								<th>Book Name</th>
+								<th>Reader ID</th>
+								<th>Borrow Time</th>
+								<th>Return Time</th>
+								<th>State</th>
+								<th >Operation</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+					
+				</div>
+
+
+
+			</div>
+		</div>
+	</div>
+
+	<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+	<!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+	<!-- JQUERY SCRIPTS -->
+	<script src="../assets/js/jquery-1.10.2.js"></script>
+	<!-- BOOTSTRAP SCRIPTS -->
+	<script src="../assets/js/bootstrap.js"></script>
+	<!-- METISMENU SCRIPTS -->
+	<script src="../assets/js/jquery.metisMenu.js"></script>
+	<!-- CUSTOM SCRIPTS -->
+	<script src="../assets/js/custom.js"></script>
+	<script src="../js/jquery-1.8.3.min.js"></script>
+	<script src="../js/jquery.select.js"></script>
+<div class="md-overlay"></div><!-- the overlay element -->
+
+		<!-- classie.js by @desandro: https://github.com/desandro/classie -->
+		<script src="../js/classie.js"></script>
+		<script src="../js/modalEffects.js"></script>
+
+		<!-- for the blur effect -->
+		<!-- by @derSchepp https://github.com/Schepp/CSS-Filters-Polyfill -->
+		<script>
+			// this is important for IEs
+			var polyfilter_scriptpath = '/js/';
+		</script>
+		<script src="../js/cssParser.js"></script>
+		<script src="../js/css-filters-polyfill.js"></script>
+	<script>
+	function getReaderNameById(reader_id){
+		var xmlhttp, str;
+		if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+			xmlhttp = new XMLHttpRequest();
+		} else {// code for IE6, IE5
+			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		xmlhttp.onreadystatechange = function() {
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+
+				str = xmlhttp.responseText;
+
+			}
+		}
+		xmlhttp.open("POST","http://localhost:8088/NWPU/getReaderNameById", false);
+		xmlhttp.setRequestHeader("Content-type",
+				"application/x-www-form-urlencoded");
+		xmlhttp.send("reader_id="+reader_id);
+		if (str != null) {
+			
+			return str;
+		}
+	}
+		var searchResult = new Array();
+		var length;
+    	//清除cookie    
+		function DelCookie(name)
+{
+var exp = new Date();
+exp.setTime (exp.getTime() - 1);
+var cval = getCookie(name);
+document.cookie = name + "=" + cval + "; expires="+ exp.toGMTString();
+}
+	    function logout(){
+	    	var isLogout = confirm("Are you sure you want to log out?");
+			if(isLogout == true){
+ 				DelCookie("idtest");
+	    	window.location.href="http://localhost:8088/NWPU/manager2Pages/login.html";
+			}
+	    }
+
+	    function changeType1(){
+	    	clearTbody("bookInformation");
+	    	
+	    
+	    	addHero();
+	    	document.getElementById("keywords").value = "";
+	    	document.getElementById("type").innerHTML = "&nbsp&nbspBook &nbsp Name &nbsp";
+	    	document.getElementById("type").style.background="rgb(0, 202, 121)";
+	    	document.cookie = "type=1";
+	    
+	    }
+		function changeType2(){
+			clearTbody("bookInformation");
+			
+		
+			addHero();
+			document.getElementById("keywords").value = "";
+			document.getElementById("type").innerHTML = "&nbsp&nbspReader &nbsp ID &nbsp&nbsp&nbsp";
+			document.getElementById("type").style.background="rgb(0, 202, 121)";
+			document.cookie = "type=2";
+			
+	    }
+		  function changeType3(){
+		    	clearTbody("bookInformation2");
+		    	
+		    
+		    	addHero2();
+		    	document.getElementById("keywords2").value = "";
+		    	document.getElementById("type2").innerHTML = "&nbsp&nbspBook &nbsp Name &nbsp";
+		    	document.getElementById("type2").style.background="rgb(0, 202, 121)";
+		    	document.cookie = "type2=3";
+		    
+		    }
+			function changeType4(){
+				clearTbody("bookInformation2");
+				
+			
+				addHero2();
+				document.getElementById("keywords2").value = "";
+				document.getElementById("type2").innerHTML ="&nbsp&nbspReader &nbsp ID &nbsp&nbsp&nbsp";
+				document.getElementById("type2").style.background="rgb(0, 202, 121)";
+				document.cookie = "type2=4";
+		    }
+			  function changeType5(){
+			    	clearTbody("bookInformation3");
+			    	
+			    
+			    	addHero3();
+			    	document.getElementById("keywords3").value = "";
+			    	document.getElementById("type3").innerHTML = "&nbsp&nbspBook &nbsp Name &nbsp";
+			    	document.getElementById("type3").style.background="rgb(0, 202, 121)";
+			    	document.cookie = "type2=3";
+			    
+			    }
+				function changeType6(){
+					clearTbody("bookInformation3");
+					
+				
+					addHero3();
+					document.getElementById("keywords3").value = "";
+					document.getElementById("type3").innerHTML = "&nbsp&nbspReader &nbsp ID &nbsp&nbsp&nbsp";
+					document.getElementById("type3").style.background="rgb(0, 202, 121)";
+					document.cookie = "type2=4";
+					
+			    }
+		function showType() {
+			document.getElementById("otherType").style.display = "block";
+		}
+		function queryBook() {
+		
+			document.getElementById("queryBookDiv").style.display = "block";
+			document.getElementById("modifyBookDiv").style.display = "none";
+			document.getElementById("deleteBookDiv").style.display = "none";
+			clearTbody("bookInformation");
+			document.getElementById("queryBook").style.background = "#00CA79";
+			document.getElementById("returnBook").style.background = "#ffffff";
+			document.getElementById("addBook").style.background = "#ffffff";
+			document.getElementById("modifyBook").style.background = "#ffffff";
+			document.getElementById("deleteBook").style.background = "#ffffff";
+			addHero();
+		}
+// 		function returnBook(){
+		
+// 			document.getElementById("queryBookDiv").style.display = "none";
+// 			document.getElementById("modifyBookDiv").style.display = "none";
+// 			document.getElementById("deleteBookDiv").style.display = "none";
+			
+// 			document.getElementById("showReader").style.display = "none";
+// 			document.getElementById("first").style.display = "none";
+// 			document.getElementById("second").style.display = "none";
+// 			document.getElementById("checkReader").style.display = "block";
+// 			document.getElementById("ID").value = "";
+			
+// 			document.getElementById("returnBook").style.background = "#00CA79";
+// 			document.getElementById("queryBook").style.background = "#ffffff";
+// 			document.getElementById("addBook").style.background = "#ffffff";
+// 			document.getElementById("modifyBook").style.background = "#ffffff";
+// 			document.getElementById("deleteBook").style.background = "#ffffff";
+		
+// 		}
+		function checkReader(){
+			var reader_id = document.getElementById("ID").value;
+			var xmlhttp;
+			if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+				xmlhttp = new XMLHttpRequest();
+			} else {// code for IE6, IE5
+				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			xmlhttp.onreadystatechange = function() {
+				if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+
+					str = xmlhttp.responseText;
+					if(str == "3"){
+						
+						setReaderInf(reader_id);
+					}else if(str == "1"){
+						alert("the reader doesn't exist!");
+					}else if(str == "2"){
+						alert("you have not borrowed books!");
+					}
+					//window.location.reload();
+				}
+			}
+			xmlhttp.open("POST", "http://localhost:8088/NWPU/checkReader2", false);
+			xmlhttp.setRequestHeader("Content-type",
+					"application/x-www-form-urlencoded");
+			xmlhttp.send("reader_id="+reader_id);
+		}
+		function setReaderInf(reader_id){
+			document.getElementById("showReader").style.display = "block";
+			document.getElementById("checkReader").style.display = "none";
+			
+			document.getElementById("book1").innerHTML = " ";
+			document.getElementById("book2").innerHTML = " ";
+			document.getElementById("book1").innerText = " ";
+			document.getElementById("book2").innerText = " ";
+			document.getElementById("book1").value = " ";
+			document.getElementById("book2").value = " ";
+			var userApplicationServlet = "http://localhost:8088/NWPU/checkReader";
+			var borrowRecord = "http://localhost:8088/NWPU/getRecordByReaderId"
+			var usersJson = analyseData2(userApplicationServlet,reader_id);
+			var recordJson = analyseData2(borrowRecord,reader_id);
+			
+			document.getElementById("readerName").innerHTML = usersJson.userName;
+			document.getElementById("readerID").innerHTML = usersJson.id;
+			document.getElementById("readerEmail").innerHTML = usersJson.email;
+			document.getElementById("readerClass").innerHTML = usersJson.classNumber;
+			document.getElementById("readerType").innerHTML = usersJson.type;
+			if(recordJson[0] != null && recordJson[0].isReturn == 0){
+				document.getElementById("book1").innerHTML = getBookNameById(recordJson[0].book_id);
+			}
+			if(recordJson[1] != null && recordJson[1].isReturn == 0){
+				document.getElementById("book2").innerHTML = getBookNameById(recordJson[1].book_id);
+			}
+			
+		}
+		
+		function returnBookItem(){
+			document.getElementById("showReader").style.display = "none";
+			document.getElementById("first").style.display = "block";
+			document.getElementById("second").style.display = "block";
+			document.getElementById("borrowBookItem3").style.display = "block";
+		
+		}
+		function returnBookItem3(){
+		
+			var isbn1 = document.getElementById("firstBook").value;
+			var isbn2 = document.getElementById("secondBook").value;
+			var reader_id = document.getElementById("ID").value;
+			var xmlhttp, str;
+			if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+				xmlhttp = new XMLHttpRequest();
+			} else {// code for IE6, IE5
+				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			xmlhttp.onreadystatechange = function() {
+				if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+
+					str = xmlhttp.responseText;
+					alert(str);
+					
+					window.location.href="http://localhost:8088/NWPU/manager2Pages/employee-return-book.html";
+					
+				}
+			}
+			if(isbn2 == ""){
+				
+				xmlhttp.open("POST","http://localhost:8088/NWPU/returnBookByIsbn", false);
+				xmlhttp.setRequestHeader("Content-type",
+						"application/x-www-form-urlencoded");
+				xmlhttp.send("isbn="+isbn1+"&reader_id="+reader_id);
+		}
+			if(isbn1 != "" && isbn2 != ""){
+				
+					xmlhttp.open("POST","http://localhost:8088/NWPU/returnBookByIsbns", false);
+					xmlhttp.setRequestHeader("Content-type",
+							"application/x-www-form-urlencoded");
+					xmlhttp.send("isbn1="+isbn1+"&isbn2="+isbn2+"&reader_id="+reader_id);
+				
+				
+			}
+		}
+		function addBook(){
+			document.getElementById("type2").innerHTML = "&nbsp&nbspBook &nbsp Name &nbsp";
+	    	document.getElementById("type2").style.background="rgb(0, 202, 121)";
+	    	document.cookie = "type2=3";
+			document.getElementById("queryBookDiv").style.display = "none";
+			document.getElementById("modifyBookDiv").style.display = "block";
+			document.getElementById("deleteBookDiv").style.display = "none";
+			clearTbody("bookInformation2");
+			document.getElementById("returnBook").style.background = "#ffffff";
+			document.getElementById("queryBook").style.background = "#ffffff";
+			document.getElementById("addBook").style.background = "#00CA79";
+			document.getElementById("modifyBook").style.background = "#ffffff";
+			document.getElementById("deleteBook").style.background = "#ffffff";
+			addHero2();
+		}
+
+		function init() {
+
+			var overlay = document.querySelector( '.md-overlay' );
+		
+			[].slice.call( document.querySelectorAll( '.test' ) ).forEach( function( el, i ) {
+
+				var modal = document.querySelector( '#' + el.getAttribute( 'data-modal' ) ),
+					close = modal.querySelector( '.md-close' );
+
+				function removeModal( hasPerspective ) {
+					classie.remove( modal, 'md-show' );
+
+					if( hasPerspective ) {
+						classie.remove( document.documentElement, 'md-perspective' );
+					}
+				}
+
+				function removeModalHandler() {
+					removeModal( classie.has( el, 'md-setperspective' ) ); 
+				}
+
+				el.addEventListener( 'click', function( ev ) {
+				
+					classie.add( modal, 'md-show' );
+					overlay.removeEventListener( 'click', removeModalHandler );
+					overlay.addEventListener( 'click', removeModalHandler );
+
+					if( classie.has( el, 'md-setperspective' ) ) {
+						setTimeout( function() {
+							classie.add( document.documentElement, 'md-perspective' );
+						}, 25 );
+					}
+				});
+
+				close.addEventListener( 'click', function( ev ) {
+					ev.stopPropagation();
+					removeModalHandler();
+				});
+
+			} );
+
+		}
+		function init2(rowIndex) {
+			
+			setBookDetail(rowIndex);
+
+			var overlay = document.querySelector( '.md-overlay' );
+		
+			[].slice.call( document.querySelectorAll( '.test' ) ).forEach( function( el, i ) {
+
+				var modal = document.querySelector( '#' + el.getAttribute( 'data-modal' ) ),
+					close = modal.querySelector( '.md-close' );
+
+				function removeModal( hasPerspective ) {
+					classie.remove( modal, 'md-show' );
+
+					if( hasPerspective ) {
+						classie.remove( document.documentElement, 'md-perspective' );
+					}
+					
+				}
+
+				function removeModalHandler() {
+					removeModal( classie.has( el, 'md-setperspective' ) ); 
+				}
+
+				el.addEventListener( 'click', function( ev ) {
+					
+					classie.add( modal, 'md-show' );
+					overlay.removeEventListener( 'click', removeModalHandler );
+					overlay.addEventListener( 'click', removeModalHandler );
+
+					if( classie.has( el, 'md-setperspective' ) ) {
+						setTimeout( function() {
+							classie.add( document.documentElement, 'md-perspective' );
+						}, 25 );
+					}
+				});
+
+				close.addEventListener( 'click', function( ev ) {
+					ev.stopPropagation();
+					removeModalHandler();
+				});
+
+			} );
+
+		}
+		function setBookDetail(rowIndex){
+		
+			var userApplicationServlet = "http://localhost:8088/NWPU/getBookServlet";
+			var usersJson = analyseData(userApplicationServlet);
+			var announcement;
+			if(usersJson.length != -1){
+				announcement = usersJson[rowIndex-1];
+				document.getElementById("id").innerHTML = announcement.id;
+				document.getElementById("isbn").innerHTML = announcement.isbn;
+				document.getElementById("bookName").innerHTML = announcement.name;
+				document.getElementById("writerName").innerHTML = announcement.writer;
+				document.getElementById("location").innerHTML = announcement.location;
+				document.getElementById("type2").innerHTML = announcement.type;
+				document.getElementById("copy").innerHTML = announcement.copy;
+				document.getElementById("lentout").innerHTML = announcement.lentout;
+				document.getElementById("date").innerHTML = announcement.date;
+				document.getElementById("description").innerHTML = announcement.description;
+
+			}
+
+		}
+		function init3(rowIndex) {
+			
+			setResult(rowIndex);
+
+			var overlay = document.querySelector( '.md-overlay' );
+		
+			[].slice.call( document.querySelectorAll( '.test' ) ).forEach( function( el, i ) {
+
+				var modal = document.querySelector( '#' + el.getAttribute( 'data-modal' ) ),
+					close = modal.querySelector( '.md-close' );
+
+				function removeModal( hasPerspective ) {
+					classie.remove( modal, 'md-show' );
+
+					if( hasPerspective ) {
+						classie.remove( document.documentElement, 'md-perspective' );
+					}
+					
+				}
+
+				function removeModalHandler() {
+					removeModal( classie.has( el, 'md-setperspective' ) ); 
+				}
+
+				el.addEventListener( 'click', function( ev ) {
+					
+					classie.add( modal, 'md-show' );
+					overlay.removeEventListener( 'click', removeModalHandler );
+					overlay.addEventListener( 'click', removeModalHandler );
+
+					if( classie.has( el, 'md-setperspective' ) ) {
+						setTimeout( function() {
+							classie.add( document.documentElement, 'md-perspective' );
+						}, 25 );
+					}
+				});
+
+				close.addEventListener( 'click', function( ev ) {
+					ev.stopPropagation();
+					removeModalHandler();
+				});
+
+			} );
+
+		}
+		function setResult(rowIndex){
+			//alert(searchResult[0].id+" "+searchResult[1].id+" "+searchResult[2].id+" "+searchResult[3].id+" "+searchResult[4].id);
+			var type = getCookie("type");
+			var keywords = document.getElementById("keywords").value;
+			var userApplicationServlet = "http://localhost:8088/NWPU/getBookByType";
+			var usersJson = getSpecialBook(userApplicationServlet,type,keywords);
+			var book = usersJson[rowIndex-1];
+			
+			document.getElementById("id").innerHTML = book.id;
+			document.getElementById("isbn").innerHTML = book.isbn;
+			document.getElementById("bookName").innerHTML = book.name;
+			document.getElementById("writerName").innerHTML = book.writer;
+			document.getElementById("location").innerHTML = book.location;
+			document.getElementById("type2").innerHTML = book.type;
+			document.getElementById("copy").innerHTML = book.copy;
+			document.getElementById("lentout").innerHTML = book.lentout;
+			document.getElementById("date").innerHTML = book.date;
+			document.getElementById("description").innerHTML = book.description;
+		}
+		function modifyBook() {
+			
+// 			document.getElementById("queryBookDiv").style.display = "none";
+// 			document.getElementById("modifyBookDiv").style.display = "block";
+// 			document.getElementById("deleteBookDiv").style.display = "none";
+// 			clearTbody("bookInformation2");
+// 			document.getElementById("returnBook").style.background = "#ffffff";
+// 			document.getElementById("addBook").style.background = "#ffffff";
+// 			document.getElementById("queryBook").style.background = "#ffffff";
+// 			document.getElementById("modifyBook").style.background = "#00CA79";
+// 			document.getElementById("deleteBook").style.background = "#ffffff";
+// 			var userApplicationServlet = "http://localhost:8088/NWPU/getBookServlet";
+// 			var usersJson = analyseData(userApplicationServlet);
+// 			if (usersJson.length != -1) {
+				
+// 				for (var i = 0; i < usersJson.length; i++) {
+// 					var z = $("bookInformation2").rows.length;
+// 					var tableRow = $("bookInformation2").insertRow(z);
+
+// 					var Cell_0 = tableRow.insertCell(0);
+// 					Cell_0.innerHTML = z;
+
+// 					var Cell_1 = tableRow.insertCell(1);
+// 					Cell_1.innerHTML = usersJson[i].name;
+
+// 					var Cell_2 = tableRow.insertCell(2);
+// 					Cell_2.innerHTML = usersJson[i].writer;
+					
+// 					var Cell_3 = tableRow.insertCell(3);
+// 					Cell_3.innerHTML = usersJson[i].copy;
+					
+// 					var Cell_4 = tableRow.insertCell(4);
+// 					Cell_4.innerHTML = usersJson[i].location;
+					
+// 					var Cell_5 = tableRow.insertCell(5);
+// 					if(usersJson[i].isAvailable>0){
+// 					Cell_5.innerHTML = "<span style='color:#0f0;'>Available</span>";}
+// 					else{
+// 						Cell_5.innerHTML = "<span style='color:#ff0000;'>Unavailable</span>";
+// 					}
+
+// 					var Cell_6 = tableRow.insertCell(6);
+
+// 					Cell_6.innerHTML = "<button class='btn btn-warning' type='submit' onclick='modifyBookItem(this.parentNode.parentNode.rowIndex)'>Modify</button>";
+// 					}
+// 			}
+
+		}
+		function deleteBook() {
+			
+			document.getElementById("queryBookDiv").style.display = "none";
+			document.getElementById("modifyBookDiv").style.display = "none";
+			document.getElementById("deleteBookDiv").style.display = "block";
+			clearTbody("bookInformation3");
+			document.getElementById("returnBook").style.background = "#ffffff";
+			document.getElementById("addBook").style.background = "#ffffff";
+			document.getElementById("queryBook").style.background = "#ffffff";
+			document.getElementById("modifyBook").style.background = "#ffffff";
+			document.getElementById("deleteBook").style.background = "#00CA79";
+			document.getElementById("type3").innerHTML = "&nbsp&nbspBook &nbsp Name &nbsp";
+	    	document.getElementById("type3").style.background="rgb(0, 202, 121)";
+	    	document.cookie = "type2=3";
+			var userApplicationServlet = "http://localhost:8088/NWPU/getBorrowingRecord";
+			var bookNameServlet = "http://localhost:8088/NWPU/getBookName";
+			var booksJson = analyseData(bookNameServlet);
+			var usersJson = analyseData(userApplicationServlet);
+			if (usersJson.length != -1) {
+				for (var i = 0; i < usersJson.length; i++) {
+					if(usersJson[i].isReturn == 1){
+					
+					var z = $("bookInformation3").rows.length;
+					var tableRow = $("bookInformation3").insertRow(z);
+
+					var Cell_0 = tableRow.insertCell(0);
+					Cell_0.innerHTML = z;
+
+					var Cell_1 = tableRow.insertCell(1);
+					Cell_1.innerHTML = booksJson[i].name;
+
+					var Cell_2 = tableRow.insertCell(2);
+					Cell_2.innerHTML = usersJson[i].reader_id;
+					
+					var Cell_3 = tableRow.insertCell(3);
+		
+ 					Cell_3.innerHTML =getLocalTime(usersJson[i].borrow_time);
+			
+					var Cell_4 = tableRow.insertCell(4);
+ 					Cell_4.innerHTML = getLocalTime(usersJson[i].return_time);
+				
+					var Cell_5 = tableRow.insertCell(5);
+					//Cell_5.innerHTML = usersJson[i].overdue;
+					var overdue = usersJson[i].overdue;
+					if(overdue == 0){
+					Cell_5.innerHTML = "<span style='color:#0f0;'>Undue</span>";}
+					else {
+						Cell_5.innerHTML = "<span style='color:#ff0000;'>Overdue</span>";
+					}
+
+					var Cell_6 = tableRow.insertCell(6);
+					Cell_6.innerHTML = '<button  class="btn btn-danger"  onclick="deleteRecord(this.parentNode.parentNode.rowIndex)">Delete</button>';
+					}
+				}
+				
+			}
+			document.getElementById("keywords3").value = "";
+		}
+		function deleteRecord(rowIndex){
+			var determination = confirm("Are you sure you want to delete this borrowing record?");
+			if (determination == true) {
+				var userApplicationServlet = "http://localhost:8088/NWPU/getBorrowingRecord";
+				var usersJson = analyseData(userApplicationServlet);
+				var index = rowIndex - 1;
+				var user = usersJson[index];
+				var xmlhttp, str;
+				if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+					xmlhttp = new XMLHttpRequest();
+				} else {// code for IE6, IE5
+					xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+				}
+				xmlhttp.onreadystatechange = function() {
+					if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+						alert("Successfully deleted");
+						deleteBook();
+					}
+				}
+				xmlhttp.open("POST",
+						"http://localhost:8088/NWPU/deleteRecordServlet", false);
+				xmlhttp.setRequestHeader("Content-type",
+						"application/x-www-form-urlencoded");
+				xmlhttp.send("record_id=" +user.record_id);
+			}
+		}
+		
+		function searchBook(){
+		
+			clearTbody("bookInformation");
+			var type = getCookie("type");
+			var keywords = document.getElementById("keywords").value;
+			var userApplicationServlet = "http://localhost:8088/NWPU/getRecordByType";
+			var bookNameServlet = "http://localhost:8088/NWPU/getBookName";
+			var usersJson,booksJson;
+			usersJson = getSpecialBook(userApplicationServlet,type,keywords);
+			booksJson =  analyseData(bookNameServlet)
+			//alert(usersJson.length);
+					if (usersJson.length != -1 && booksJson.length != -1) {
+						//alert(usersJson.length+" "+booksJson.length);
+						for (var i = 0; i < usersJson.length; i++) {
+							if(usersJson[i].isReturn == 0){
+							
+							var z = $("bookInformation").rows.length;
+							var tableRow = $("bookInformation").insertRow(z);
+
+							var Cell_0 = tableRow.insertCell(0);
+							Cell_0.innerHTML = z;
+
+							var Cell_1 = tableRow.insertCell(1);
+							//Cell_1.innerHTML = booksJson.length;
+							//if( usersJson[i].book_id ==  booksJson[i].id){
+							Cell_1.innerHTML = getBookNameById(usersJson[i].book_id);
+							//}
+							var Cell_2 = tableRow.insertCell(2);
+							Cell_2.innerHTML = usersJson[i].reader_id;
+							
+							var Cell_3 = tableRow.insertCell(3);
+				
+		 					Cell_3.innerHTML =getLocalTime(usersJson[i].borrow_time);
+					
+							var Cell_4 = tableRow.insertCell(4);
+		 					Cell_4.innerHTML = getLocalTime(usersJson[i].return_time);
+						
+							var Cell_5 = tableRow.insertCell(5);
+							var overdue = parseInt(usersJson[i].overdue);
+							if(overdue == 0){
+							Cell_5.innerHTML = "<span style='color:#0f0;'>Undue</span>";}
+							else {
+								Cell_5.innerHTML = "<span style='color:#ff0000;'>Overdue</span>";
+							}
+
+							var Cell_6 = tableRow.insertCell(6);
+							Cell_6.innerHTML = '<button  class="btn btn-success"  onclick="returnBook2(this.parentNode.parentNode.rowIndex)">Return</button>';
+							}
+					}	
+		}
+		}
+		function searchBook2(){
+			
+			clearTbody("bookInformation2");
+			var type = getCookie("type2");
+			var keywords = document.getElementById("keywords2").value;
+			var userApplicationServlet = "http://localhost:8088/NWPU/getRecordByType";
+			var bookNameServlet = "http://localhost:8088/NWPU/getBookName";
+			var usersJson,booksJson;
+			usersJson = getSpecialBook(userApplicationServlet,type,keywords);
+			booksJson =  analyseData(bookNameServlet)
+			//alert(usersJson.length);
+					if (usersJson.length != -1 && booksJson.length != -1) {
+						//alert(usersJson.length+" "+booksJson.length);
+						for (var i = 0; i < usersJson.length; i++) {
+							if(usersJson[i].isReturn == 0){
+							
+							var z = $("bookInformation2").rows.length;
+							var tableRow = $("bookInformation2").insertRow(z);
+
+							var Cell_0 = tableRow.insertCell(0);
+							Cell_0.innerHTML = z;
+
+							var Cell_1 = tableRow.insertCell(1);
+							//Cell_1.innerHTML = booksJson.length;
+							//if( usersJson[i].book_id ==  booksJson[i].id){
+							Cell_1.innerHTML = getBookNameById(usersJson[i].book_id);
+							//}
+							var Cell_2 = tableRow.insertCell(2);
+							Cell_2.innerHTML = usersJson[i].reader_id;
+							
+							var Cell_3 = tableRow.insertCell(3);
+				
+		 					Cell_3.innerHTML =getLocalTime(usersJson[i].borrow_time);
+					
+							var Cell_4 = tableRow.insertCell(4);
+		 					Cell_4.innerHTML = getLocalTime(usersJson[i].return_time);
+						
+							var Cell_5 = tableRow.insertCell(5);
+							var overdue = usersJson[i].overdue;
+							if(overdue == 0){
+							Cell_5.innerHTML = "<span style='color:#0f0;'>Undue</span>";}
+							else {
+								Cell_5.innerHTML = "<span style='color:#ff0000;'>Overdue</span>";
+							}
+
+							var Cell_6 = tableRow.insertCell(6);
+							Cell_6.innerHTML = '<button  class="btn btn-success"  onclick="renewBook(this.parentNode.parentNode.rowIndex)">Renew</button>';
+							}
+					}	
+		}
+		}
+		function searchBook3(){
+			
+			clearTbody("bookInformation3");
+			var type = getCookie("type2");
+			var keywords = document.getElementById("keywords3").value;
+			var userApplicationServlet = "http://localhost:8088/NWPU/getRecordByType";
+			var bookNameServlet = "http://localhost:8088/NWPU/getBookName";
+			var usersJson,booksJson;
+			usersJson = getSpecialBook(userApplicationServlet,type,keywords);
+			booksJson =  analyseData(bookNameServlet)
+			//alert(usersJson.length);
+					if (usersJson.length != -1 && booksJson.length != -1) {
+						//alert(usersJson.length+" "+booksJson.length);
+						for (var i = 0; i < usersJson.length; i++) {
+							if(usersJson[i].isReturn == 1){
+							
+							var z = $("bookInformation3").rows.length;
+							var tableRow = $("bookInformation3").insertRow(z);
+
+							var Cell_0 = tableRow.insertCell(0);
+							Cell_0.innerHTML = z;
+
+							var Cell_1 = tableRow.insertCell(1);
+							//Cell_1.innerHTML = booksJson.length;
+							//if( usersJson[i].book_id ==  booksJson[i].id){
+							Cell_1.innerHTML = getBookNameById(usersJson[i].book_id);
+							//}
+							var Cell_2 = tableRow.insertCell(2);
+							Cell_2.innerHTML = usersJson[i].reader_id;
+							
+							var Cell_3 = tableRow.insertCell(3);
+				
+		 					Cell_3.innerHTML =getLocalTime(usersJson[i].borrow_time);
+					
+							var Cell_4 = tableRow.insertCell(4);
+		 					Cell_4.innerHTML = getLocalTime(usersJson[i].return_time);
+						
+							var Cell_5 = tableRow.insertCell(5);
+							var overdue = usersJson[i].overdue;
+							if(overdue == 0){
+							Cell_5.innerHTML = "<span style='color:#0f0;'>Undue</span>";}
+							else {
+								Cell_5.innerHTML = "<span style='color:#ff0000;'>Overdue</span>";
+							}
+
+							var Cell_6 = tableRow.insertCell(6);
+							Cell_6.innerHTML = '<button  class="btn btn-danger"  onclick="deleteRecord(this.parentNode.parentNode.rowIndex)">Delete</button>';
+							}
+					}	
+		}
+		}
+		
+		function getBookNameById(book_id){
+			var xmlhttp, str;
+			if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+				xmlhttp = new XMLHttpRequest();
+			} else {// code for IE6, IE5
+				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			xmlhttp.onreadystatechange = function() {
+				if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+
+					str = xmlhttp.responseText;
+
+				}
+			}
+			xmlhttp.open("POST","http://localhost:8088/NWPU/getBookNameById", false);
+			xmlhttp.setRequestHeader("Content-type",
+					"application/x-www-form-urlencoded");
+			xmlhttp.send("book_id="+book_id);
+			if (str != null) {
+				
+				return str;
+			}
+		}
+		function getSpecialBook(servlet,type,keywords){
+			var xmlhttp, str;
+			if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+				xmlhttp = new XMLHttpRequest();
+			} else {// code for IE6, IE5
+				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			xmlhttp.onreadystatechange = function() {
+				if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+
+					str = xmlhttp.responseText;
+
+				}
+			}
+			xmlhttp.open("POST", servlet, false);
+			xmlhttp.setRequestHeader("Content-type",
+					"application/x-www-form-urlencoded");
+			xmlhttp.send("type="+type+"&keywords="+keywords);
+			if (str != null) {
+				var usersJson = eval('(' + str + ')');
+				return usersJson;
+			}
+		}
+		function isContains(str, substr) {
+		    return str.indexOf(substr) >= 0;
+		}
+		function modifyBookItem(index){
+			
+			var userApplicationServlet = "http://localhost:8088/NWPU/getBookServlet";
+			var booksJson = analyseData(userApplicationServlet);
+			var rowIndex = index - 1;
+			
+			if(booksJson.length!=-1){
+			
+			document.cookie = "id="+booksJson[rowIndex].id;
+			document.cookie = "isbn="+booksJson[rowIndex].isbn;
+			document.cookie = "name="+booksJson[rowIndex].name;
+			document.cookie = "writer="+booksJson[rowIndex].writer;
+			document.cookie = "type="+booksJson[rowIndex].type;
+			var location = booksJson[rowIndex].location;
+			document.cookie = "location="+location;
+			document.cookie = "copy="+booksJson[rowIndex].copy;
+			document.cookie = "lentout="+booksJson[rowIndex].lentout;
+			document.cookie = "description="+booksJson[rowIndex].description;
+			document.cookie = "date="+booksJson[rowIndex].date;
+			window.location.href = "http://localhost:8088/NWPU/manager2Pages/modify-book.html#toregister";
+		}
+		}
+		function clearTbody(tableName) {
+
+			var table = document.getElementById(tableName);
+			var tableLength = table.rows.length;
+			if (tableLength >= 1) {
+				for (var int = 1; int < tableLength; int++) {
+					table.deleteRow(1);
+
+				}
+			}
+
+		}
+		function $(id) {
+			return document.getElementById(id);
+		}
+		  function init5() {
+		        var username = getCookie("idtest");
+		       if(username!="login"){
+		    	   window.location.href="http://localhost:8088/NWPU/manager2Pages/login.html";
+		    	  //alert("not log in");
+		       }
+		    }
+		function judgeState() {
+			document.getElementById("userName").innerHTML = getReaderNameById(getCookie("loginName"));
+			init5();
+			document.getElementById("type").innerHTML = "&nbsp&nbspBook &nbsp Name &nbsp";
+	    	document.getElementById("type").style.background="rgb(0, 202, 121)";
+	    	document.cookie = "type=1";
+			var status = getCookie("status");
+			if (status == "1") {
+				modifyBook();
+				document.cookie = "status=0";
+			} else {
+				queryBook();
+				init();
+			}
+		}
+		//清除cookie    
+		function clearCookie(name) {    
+		    setCookie(name, "", -1);    
+		}
+		function add0(m){return m<10?'0'+m:m }
+		function getLocalTime(nS) {     
+		    
+		       var time = new Date(parseInt(nS) * 1000);
+		       var y = time.getFullYear();
+		       var m = time.getMonth()+1;
+		       var d = time.getDate();
+		       var h = time.getHours();
+		       var mm = time.getMinutes();
+		       var s = time.getSeconds();
+		       return y+'-'+add0(m)+'-'+add0(d)+' '+add0(h)+':'+add0(mm)+':'+add0(s);
+		    } 
+		function addHero() {
+			//document.getElementById("readerApplication").setAttribute("className","table table-striped");
+			document.getElementById("queryBook").style.background = "#00CA79";
+			var userApplicationServlet = "http://localhost:8088/NWPU/getBorrowingRecord";
+			var bookNameServlet = "http://localhost:8088/NWPU/getBookName";
+			var booksJson = analyseData(bookNameServlet);
+			var usersJson = analyseData(userApplicationServlet);
+			if (usersJson.length != -1) {
+				for (var i = 0; i < usersJson.length; i++) {
+					if(usersJson[i].isReturn == 0){
+					var book_id = 23;
+					var z = $("bookInformation").rows.length;
+					var tableRow = $("bookInformation").insertRow(z);
+
+					var Cell_0 = tableRow.insertCell(0);
+					Cell_0.innerHTML = z;
+
+					var Cell_1 = tableRow.insertCell(1);
+					Cell_1.innerHTML = booksJson[i].name;
+
+					var Cell_2 = tableRow.insertCell(2);
+					Cell_2.innerHTML = usersJson[i].reader_id;
+					
+					var Cell_3 = tableRow.insertCell(3);
+		
+ 					Cell_3.innerHTML =getLocalTime(usersJson[i].borrow_time);
+			
+					var Cell_4 = tableRow.insertCell(4);
+ 					Cell_4.innerHTML = getLocalTime(usersJson[i].return_time);
+				
+					var Cell_5 = tableRow.insertCell(5);
+					//Cell_5.innerHTML = usersJson[i].return_time;
+					var overdue = parseInt(usersJson[i].overdue);
+					if(overdue == 0){
+					Cell_5.innerHTML = "<span style='color:#0f0;'>Undue</span>";}
+					else if(overdue == 1){
+						Cell_5.innerHTML = "<span style='color:#ff0000;'>Overdue</span>";
+					}else if(overdue == 3){
+						Cell_5.innerHTML = "<span style='color:#ff0000;'>Error</span>";
+					}
+
+
+					}
+				}
+				
+			}
+			document.getElementById("keywords").value = "";
+		}
+		function addHero2() {
+			//document.getElementById("readerApplication").setAttribute("className","table table-striped");
+			document.getElementById("addBook").style.background = "#00CA79";
+			var userApplicationServlet = "http://localhost:8088/NWPU/getBorrowingRecord";
+			var bookNameServlet = "http://localhost:8088/NWPU/getBookName";
+			var booksJson = analyseData(bookNameServlet);
+			var usersJson = analyseData(userApplicationServlet);
+			if (usersJson.length != -1) {
+				for (var i = 0; i < usersJson.length; i++) {
+					if(usersJson[i].isReturn == 0){
+					var book_id = 23;
+					var z = $("bookInformation2").rows.length;
+					var tableRow = $("bookInformation2").insertRow(z);
+
+					var Cell_0 = tableRow.insertCell(0);
+					Cell_0.innerHTML = z;
+
+					var Cell_1 = tableRow.insertCell(1);
+					Cell_1.innerHTML = booksJson[i].name;
+
+					var Cell_2 = tableRow.insertCell(2);
+					Cell_2.innerHTML = usersJson[i].reader_id;
+					
+					var Cell_3 = tableRow.insertCell(3);
+		
+ 					Cell_3.innerHTML =getLocalTime(usersJson[i].borrow_time);
+			
+					var Cell_4 = tableRow.insertCell(4);
+ 					Cell_4.innerHTML = getLocalTime(usersJson[i].return_time);
+				
+					var Cell_5 = tableRow.insertCell(5);
+					var overdue =usersJson[i].overdue;
+					if(overdue == 0){
+					Cell_5.innerHTML = "<span style='color:#0f0;'>Undue</span>";}
+					else {
+						Cell_5.innerHTML = "<span style='color:#ff0000;'>Overdue</span>";
+					}
+
+					var Cell_6 = tableRow.insertCell(6);
+					Cell_6.innerHTML = '<button  class="btn btn-success"  onclick="renewBook(this.parentNode.parentNode.rowIndex)">Renew</button>';
+					}
+				}
+				
+			}
+			document.getElementById("keywords2").value = "";
+		}
+		function addHero3() {
+			//document.getElementById("readerApplication").setAttribute("className","table table-striped");
+			document.getElementById("deleteBook").style.background = "#00CA79";
+			var userApplicationServlet = "http://localhost:8088/NWPU/getBorrowingRecord";
+			var bookNameServlet = "http://localhost:8088/NWPU/getBookName";
+			var booksJson = analyseData(bookNameServlet);
+			var usersJson = analyseData(userApplicationServlet);
+			if (usersJson.length != -1) {
+				for (var i = 0; i < usersJson.length; i++) {
+					if(usersJson[i].isReturn == 1){
+					
+					var z = $("bookInformation3").rows.length;
+					var tableRow = $("bookInformation3").insertRow(z);
+
+					var Cell_0 = tableRow.insertCell(0);
+					Cell_0.innerHTML = z;
+
+					var Cell_1 = tableRow.insertCell(1);
+					Cell_1.innerHTML = booksJson[i].name;
+
+					var Cell_2 = tableRow.insertCell(2);
+					Cell_2.innerHTML = usersJson[i].reader_id;
+					
+					var Cell_3 = tableRow.insertCell(3);
+		
+ 					Cell_3.innerHTML =getLocalTime(usersJson[i].borrow_time);
+			
+					var Cell_4 = tableRow.insertCell(4);
+ 					Cell_4.innerHTML = getLocalTime(usersJson[i].return_time);
+				
+					var Cell_5 = tableRow.insertCell(5);
+					var overdue =usersJson[i].overdue;
+					if(overdue == 0){
+					Cell_5.innerHTML = "<span style='color:#0f0;'>Undue</span>";}
+					else {
+						Cell_5.innerHTML = "<span style='color:#ff0000;'>Overdue</span>";
+					}
+
+					var Cell_6 = tableRow.insertCell(6);
+					Cell_6.innerHTML = '<button  class="btn btn-danger"  onclick="deleteRecord(this.parentNode.parentNode.rowIndex)">Delete</button>';
+					}
+				}
+				
+			}
+			document.getElementById("keywords2").value = "";
+		}
+		function returnBook(rowIndex){
+			var userApplicationServlet = "http://localhost:8088/NWPU/getUnreturnRecord";
+			var usersJson = analyseData(userApplicationServlet);
+			var record_id = usersJson[rowIndex-1].record_id;
+			var book_id = usersJson[rowIndex-1].book_id;
+			var servlet = "http://localhost:8088/NWPU/updateBorrowingRecord";
+			var xmlhttp, str;
+			if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+				xmlhttp = new XMLHttpRequest();
+			} else {// code for IE6, IE5
+				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			xmlhttp.onreadystatechange = function() {
+				if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+
+					str = xmlhttp.responseText;
+					//clearTbody("bookInformation");
+					searchBook();
+					alert("Return book successfully");
+				}
+			}
+			xmlhttp.open("POST", servlet, false);
+			xmlhttp.setRequestHeader("Content-type",
+					"application/x-www-form-urlencoded");
+			xmlhttp.send("record_id="+record_id+"&book_id="+book_id);
+		
+		}
+		function returnBook2(rowIndex) {
+			
+			var type = getCookie("type");
+			var keywords = document.getElementById("keywords").value;
+			var userApplicationServlet = "http://localhost:8088/NWPU/getRecordByType";
+		
+			var servlet = "http://localhost:8088/NWPU/updateBorrowingRecord";
+			var usersJson;
+			usersJson = getSpecialBook(userApplicationServlet,type,keywords);
+			
+			var record_id = usersJson[rowIndex-1].record_id;
+			var book_id = usersJson[rowIndex-1].book_id;
+			//alert(record_id);
+			
+			var xmlhttp, str;
+			if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+				xmlhttp = new XMLHttpRequest();
+			} else {// code for IE6, IE5
+				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			xmlhttp.onreadystatechange = function() {
+				if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+
+					str = xmlhttp.responseText;
+					//clearTbody("bookInformation");
+					//window.location.reload();
+					searchBook();
+					alert("Return book successfully");
+				}
+			}
+			xmlhttp.open("POST", servlet, false);
+			xmlhttp.setRequestHeader("Content-type",
+					"application/x-www-form-urlencoded");
+			xmlhttp.send("record_id="+record_id+"book_id="+book_id);
+		}
+		function renewBook(rowIndex) {
+			
+			var type = getCookie("type2");
+			var keywords = document.getElementById("keywords2").value;
+			var userApplicationServlet = "http://localhost:8088/NWPU/getRecordByType";
+		
+			var servlet = "http://localhost:8088/NWPU/renewBorrowingRecord";
+			var usersJson;
+			usersJson = getSpecialBook(userApplicationServlet,type,keywords);
+			
+			var record_id = usersJson[rowIndex-1].record_id;
+			//alert(record_id);
+			
+			var xmlhttp, str;
+			if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+				xmlhttp = new XMLHttpRequest();
+			} else {// code for IE6, IE5
+				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			xmlhttp.onreadystatechange = function() {
+				if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+
+					str = xmlhttp.responseText;
+					//clearTbody("bookInformation");
+					//window.location.reload();
+					searchBook2();
+					alert("Put off 15 days successfully")
+				}
+			}
+			xmlhttp.open("POST", servlet, false);
+			xmlhttp.setRequestHeader("Content-type",
+					"application/x-www-form-urlencoded");
+			xmlhttp.send("record_id="+record_id);
+		}
+		function borrow(rowIndex){
+			document.getElementById("ID").value="";
+			var type = getCookie("type");
+			var keywords = document.getElementById("keywords").value;
+			
+			var userApplicationServlet = "http://localhost:8088/NWPU/getBookByType";
+			var userApplicationServlet2 = "http://localhost:8088/NWPU/getBookServlet";
+			var usersJson;
+			var usersJson2;
+			//alert(keywords);
+			if(isNull(keywords)){
+		
+				usersJson2 = analyseData(userApplicationServlet2);
+				var book = usersJson2[rowIndex-1];
+				document.getElementById("rowIndex").innerHTML=book.id;
+			}else if(!isNull(keywords)){
+				
+				//alert(keywords);
+ 				usersJson = getSpecialBook(userApplicationServlet,type,keywords);
+ 				//alert(usersJson.length);
+ 				var book2 = usersJson[rowIndex-1];
+ 				//alert(book2.name);
+ 				document.getElementById("rowIndex").innerHTML=book2.id;
+			}
+			
+		
+			
+		}
+		function isNull( str ){
+			if ( str == "" ) return true;
+			var regu = "^[ ]+$";
+			var re = new RegExp(regu);
+			return re.test(str);
+			}
+		function checkBorrow(){
+ 			var book_id = document.getElementById("rowIndex").innerText;
+ 			var reader_id = document.getElementById("ID").value;
+ 			var keywords = document.getElementById("keywords").value;
+ 			var xmlhttp, str;
+			if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+				xmlhttp = new XMLHttpRequest();
+			} else {// code for IE6, IE5
+				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			xmlhttp.onreadystatechange = function() {
+				if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+
+					str = xmlhttp.responseText;
+					alert(str);
+					if(isNull(keywords)){
+						queryBook();
+						init();
+					}else{
+						clearTbody("bookInformation");
+						
+						searchBook();
+						init();
+					}
+					//window.location.reload();
+				}
+			}
+			xmlhttp.open("POST", "http://localhost:8088/NWPU/borrowBookServlet", false);
+			xmlhttp.setRequestHeader("Content-type",
+					"application/x-www-form-urlencoded");
+			xmlhttp.send("book_id="+book_id+"&reader_id="+reader_id);
+	
+ 			
+		}
+		function analyseData(userApplicationServlet) {
+
+			var xmlhttp, str;
+			if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+				xmlhttp = new XMLHttpRequest();
+			} else {// code for IE6, IE5
+				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			xmlhttp.onreadystatechange = function() {
+				if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+
+					str = xmlhttp.responseText;
+
+				}
+			}
+			xmlhttp.open("POST", userApplicationServlet, false);
+			xmlhttp.setRequestHeader("Content-type",
+					"application/x-www-form-urlencoded");
+			xmlhttp.send();
+			if (str != null) {
+				var usersJson = eval('(' + str + ')');
+				return usersJson;
+			}
+		}
+		function analyseData2(userApplicationServlet,reader_id) {
+
+			var xmlhttp, str;
+			if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+				xmlhttp = new XMLHttpRequest();
+			} else {// code for IE6, IE5
+				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			xmlhttp.onreadystatechange = function() {
+				if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+
+					str = xmlhttp.responseText;
+
+				}
+			}
+			xmlhttp.open("POST", userApplicationServlet, false);
+			xmlhttp.setRequestHeader("Content-type",
+					"application/x-www-form-urlencoded");
+			xmlhttp.send("reader_id="+reader_id);
+			if (str != null) {
+				var usersJson = eval('(' + str + ')');
+				return usersJson;
+			}
+		}
+		function getCookie(cname) {
+			var ss = document.cookie;
+			var name = cname + "=";
+			var ca = document.cookie.split(';');
+			for (var i = 0; i < ca.length; i++) {
+				var c = ca[i].trim();
+				if (c.indexOf(name) == 0)
+					return c.substring(name.length, c.length);
+			}
+			return "";
+		}
+	</script>
+</body>
+</html>

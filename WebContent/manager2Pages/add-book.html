@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6 lt8"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7 lt8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8 lt8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="UTF-8" />
+<!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">  -->
+<title>Login and Registration Form with HTML5 and CSS3</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description"
+	content="Login and Registration Form with HTML5 and CSS3" />
+<meta name="keywords"
+	content="html5, css3, form, switch, animation, :target, pseudo-class" />
+<meta name="author" content="Codrops" />
+<link rel="shortcut icon" href="../../favicon.ico">
+<link rel="stylesheet" type="text/css" href="../css/demo.css" />
+<link rel="stylesheet" type="text/css" href="../css/style.css" />
+<link rel="stylesheet" type="text/css" href="../css/animate-custom.css" />
+<style>
+input[type="number"] {
+	-moz-appearance: textfield;
+}
+
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+	-webkit-appearance: none !important;
+	margin: 0;
+}
+
+
+	#more{
+		color: #fff;
+background-color: #428bca;
+border-color: #357ebd;
+}
+
+#more:hover {
+   
+        background-color: #285e8e;
+}
+.test{
+width: 30%;
+cursor: pointer;
+background: rgb(61, 157, 179);
+padding: 8px 5px;
+font-family: 'BebasNeueRegular','Arial Narrow',Arial,sans-serif;
+color: #fff;
+font-size: 24px;
+border: 1px solid rgb(28, 108, 122);
+margin-bottom: 10px;
+text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+-webkit-border-radius: 3px;
+-moz-border-radius: 3px;
+border-radius: 3px;
+-webkit-box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.07) inset, 0px 0px 0px 3px rgb(254, 254, 254), 0px 5px 3px 3px rgb(210, 210, 210);
+-moz-box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.07) inset, 0px 0px 0px 3px rgb(254, 254, 254), 0px 5px 3px 3px rgb(210, 210, 210);
+box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.07) inset, 0px 0px 0px 3px rgb(254, 254, 254), 0px 5px 3px 3px rgb(210, 210, 210);
+-webkit-transition: all 0.2s linear;
+-moz-transition: all 0.2s linear;
+-o-transition: all 0.2s linear;
+transition: all 0.2s linear;}
+
+
+</style>
+</head>
+<body>
+	<div class="container">
+
+		<div class="codrops-top"></div>
+	
+		<section>
+			<div id="container_demo">
+				<a class="hiddenanchor" id="toregister"></a> <a class="hiddenanchor"
+					id="tologin"></a>
+				<div id="wrapper">
+
+
+					<div id="register" class="animate form">
+						                            <form  action="http://localhost:8088/NWPU/manager2Pages/book-information.html" autocomplete="on" onsubmit="return signUpCheck()" method="post"> 
+                                <h1> Add Book </h1> 
+                                
+							<p>
+								<label for="isbn" class="isbn" data-icon="u"> ISBN </label>  <input id="isbn" name="isbn" placeholder="book isbn" 
+									 title="" />
+							</p>
+							<p>
+								<label for="bookName" class="bookName" data-icon="p">
+									Book Name </label> <input id="bookName" name="bookName"  type="text"
+									placeholder="book name" title="" />
+							</p>
+														<p>
+								<label for="writerName" class="writerName" data-icon="p">
+									Writer Name </label> <input id="writerName" name="writerName"  type="text"
+									placeholder="writer name" title="" />
+							</p>
+                                <p> 
+                                    <label for="type" class="type" data-icon="e" > Type</label>
+                                  
+                                     <select id="type"><option>Politics</option><option>Economy</option><option>Military</option><option>Literature</option></select>
+                                </p>
+
+							<p>
+								<label for="location" class="location" data-icon="u"> Location</label> <input id="location" name="location"
+									
+									placeholder="the location of this book" type="text" title=" " required="required"/>
+							</p>
+							<p>
+								<label for="copy" class="copy" data-icon="p">
+									Copy </label>
+							   <input id="copy" name="copy"   placeholder="the quantity of this book" title=" " />
+							</p>
+							<p>
+								<label for="description" class="description" data-icon="p">
+									Description</label> <input id="description" name="description" 
+									placeholder="the description of this book" title="" />
+							</p>
+								<p>
+								<label for="image" class="description" data-icon="p">
+									Image</label> <input id="image" name="description" 
+									placeholder="the src of this book cover" title="" />
+							</p>
+							<p id="signUpError" class="keeplogin"
+								style="color: red; display: none">the confirmed password is not equal to the password
+								</p>
+                                <p class="signin button"> 
+                              <button id="more" class="test" type="button" >Confirm</button>
+									 <input type="submit" value="Save" /> 
+								</p>
+                                <p class="change_link">  
+									
+									<a href="http://localhost:8088/NWPU/manager2Pages/book-information.html" class="to_register"> Back </a>
+								</p>
+                            </form>
+                            
+					</div>
+
+				</div>
+			</div>
+		</section>
+	</div>
+</body>
+<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+<script >
+$(document).ready(function(){
+  $("#more").click(function(){
+    var url="https://api.douban.com/v2/book/isbn/"+$("#isbn").val()
+    var img_url=""
+    $.ajax({
+        url: url,
+        type: 'GET',
+        dataType: 'JSONP',//here
+        success: function (data) {
+      
+          $("#bookName").val(data.title);
+          $("#writerName").val(data.author);
+          $("#description").val(data.summary);
+          $("#image").val(data.image);
+      }
+    });
+
+  });
+});
+function getBookInformation(){
+	var isbn,bookServlet,xmlhttp;
+	isbn = document.getElementById("isbn").value;
+	bookServlet = "https://api.douban.com/v2/book/isbn/" + isbn;
+	
+	if (window.XMLHttpRequest)
+	  {// code for IE7+, Firefox, Chrome, Opera, Safari
+	  xmlhttp=new XMLHttpRequest();
+	  }
+	else
+	  {// code for IE6, IE5
+	  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	  }
+	xmlhttp.onreadystatechange=function()
+	  {
+	  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+	    {
+	    alert(xmlhttp.responseText);
+	    }
+	  }
+	xmlhttp.open("GET",bookServlet,true);
+	xmlhttp.send();
+	
+
+
+}
+	function signUpCheck(){
+		var isbn,bookName,writerName,type,location,copy,description,signUpError,xmlhttp,result=false; 
+		var date  = new Date();
+		year = date.getFullYear();
+		month  = date.getMonth()+1;
+		day = date.getDate();
+		var myDate = year+"/"+month+"/"+day;
+		isbn = document.getElementById("isbn").value;
+		bookName = document.getElementById("bookName").value;
+		writerName = document.getElementById("writerName").value;
+		type = document.getElementById("type").value;
+		location = document.getElementById("location").value;
+		copy = document.getElementById("copy").value;
+		description = document.getElementById("description").value;
+		var image =  document.getElementById("image").value;
+		if (window.XMLHttpRequest)
+		  {// code for IE7+, Firefox, Chrome, Opera, Safari
+		  xmlhttp=new XMLHttpRequest();
+		  }
+		else
+		  {// code for IE6, IE5
+		  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		  }
+		xmlhttp.onreadystatechange=function()
+		  {
+		  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		    {	
+			  if(xmlhttp.responseText=="success"){
+				 // alert(xmlhttp.responseText);
+				 
+				return true;
+			  }
+		    
+		    }
+		  }
+		xmlhttp.open("POST","http://localhost:8088/NWPU/addBookServlet",false);
+		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		//xmlhttp.send("fname=Bill&lname=Gates");
+		xmlhttp.send("isbn="+isbn+"&bookName="+bookName+"&writerName="+writerName+"&type="+type+"&location="+location+"&copy="+copy+"&description="+description+"&date="+myDate+"&image="+image);
+		
+
+	}
+	
+	var user=document.getElementById("copy");
+	    user.onblur=function(){
+	        if(user.validity.valueMissing){
+	        	
+	            user.setCustomValidity("please input the quantity of this book");//现将有输入时的提示设置为空
+	        }else if(user.value<1){
+	            user.setCustomValidity("the quantity must be greater than 0");  
+	        };
+	        if(user.validity.typeMismatch){ 
+	            user.setCustomValidity("please input the quantity of this book");
+	        }
+	    };
+	
+</script>
+</html>

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6 lt8"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7 lt8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8 lt8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="UTF-8" />
+<!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">  -->
+<title>Login and Registration Form with HTML5 and CSS3</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description"
+	content="Login and Registration Form with HTML5 and CSS3" />
+<meta name="keywords"
+	content="html5, css3, form, switch, animation, :target, pseudo-class" />
+<meta name="author" content="Codrops" />
+<link rel="shortcut icon" href="../../favicon.ico">
+<link rel="stylesheet" type="text/css" href="../css/demo.css" />
+<link rel="stylesheet" type="text/css" href="../css/style.css" />
+<link rel="stylesheet" type="text/css" href="../css/animate-custom.css" />
+<style>
+input[type="number"] {
+	-moz-appearance: textfield;
+}
+
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+	-webkit-appearance: none !important;
+	margin: 0;
+}
+</style>
+</head>
+<body>
+	<div class="container">
+
+		<div class="codrops-top"></div>
+		<header>
+			<h2>
+				Welcome To NWPU Online Library Management System <span></span>
+			</h2>
+			
+		</header>
+	
+		<section>
+			<div id="container_demo">
+				<a class="hiddenanchor" id="toregister"></a> <a class="hiddenanchor"
+					id="tologin"></a>
+				<div id="wrapper">
+					<div id="login" class="animate form">
+						<form name="form1" action="#" method="post" onsubmit="return loadXMLDoc()">
+							<h1>SIGN IN</h1>
+							<p>
+								<label for="id" class="uname" data-icon="u"> Your
+									school work number </label> <input id="id" name="username"
+									required
+									oninvalid="setCustomValidity('please input your school work number')"
+									oninput="setCustomValidity('')"
+									onchange="setCustomValidity('')"
+									placeholder="my school work number" type="number" title="" />
+							</p>
+							<p>
+								<label for="password" class="youpasswd" data-icon="p">
+									Your password </label> <input id="password" name="password" required
+									oninvalid="setCustomValidity('please input your password')"
+									oninput="setCustomValidity('')" type="password"
+									placeholder="my password" title="" />
+							</p>
+							<p id="loginError" class="keeplogin"
+								style="color: red; display: none">incorrect username or
+								password</p>
+
+							<p class="login button">
+								<input type="submit" value="Login" />
+								
+							</p>
+							<p class="change_link">
+								Not a member yet ? <a href="#toregister" class="to_register">Sign
+									Up</a>
+							</p>
+						</form>
+					</div>
+
+					<div id="register" class="animate form">
+						                            <form  action="http://localhost:8088/NWPU/manager2Pages/notify.html" autocomplete="on" onsubmit="return signUpCheck()" method="post"> 
+                                <h1> Sign up </h1> 
+							<p>
+								<label for="idsignup" class="uname" data-icon="u"> School Work Number </label>  <input id="idsignup" name="usernamesignup"
+									required
+									oninvalid="setCustomValidity('please input your school work number')"
+									oninput="setCustomValidity('')"
+									onchange="setCustomValidity('')"
+									placeholder=" school work number" type="number" title="" />
+							</p>
+							<p>
+								<label for="userName" class="youpasswd" data-icon="p">
+									User Name </label> <input id="userName" name="passwordsignup" required
+									oninvalid="setCustomValidity('please input your userName')"
+									oninput="setCustomValidity('')" type="text"
+									placeholder="user name" title="" />
+							</p>
+                                <p> 
+                                    <label for="emailsignup" class="youmail" data-icon="e" > Eamil</label>
+                                    <input id="emailsignup" name="emailsignup" required="required" type="email" placeholder="mysupermail@mail.com" title=""/> 
+                                </p>
+
+							<p>
+								<label for="classNumber" class="uname" data-icon="u"> Class Number</label> <input id="classNumber" name="usernamesignup"
+									required
+									oninvalid="setCustomValidity('please input your class number')"
+									oninput="setCustomValidity('')"
+									onchange="setCustomValidity('')"
+									placeholder="class number" type="number" title="" />
+							</p>
+							<p>
+								<label for="passwordsignup" class="youpasswd" data-icon="p">
+									Your password </label> <input id="passwordsignup" name="passwordsignup" required
+									oninvalid="setCustomValidity('please input your password')"
+									oninput="setCustomValidity('')" type="password"
+									placeholder="my password" title="" />
+							</p>
+							<p>
+								<label for="passwordsignup_confirm" class="youpasswd" data-icon="p">
+									Confirm Your password </label> <input id="passwordsignup_confirm" name="passwordsignup_confirm" required
+									oninvalid="setCustomValidity('please input your password')"
+									oninput="setCustomValidity('')" type="password"
+									placeholder="my password" title="" />
+							</p>
+							<p id="signUpError" class="keeplogin"
+								style="color: red; display: none">the confirmed password is not equal to the password
+								</p>
+                                <p class="signin button"> 
+									 <input type="submit" value="Sign up" /> 
+								</p>
+                                <p class="change_link">  
+									Already a member ?
+									<a href="#tologin" class="to_register"> Go and log in </a>
+								</p>
+                            </form>
+					</div>
+
+				</div>
+			</div>
+		</section>
+	</div>
+</body>
+<script>
+var result2 = false;
+function loadXMLDoc()
+{
+	
+var xmlhttp,id,password,result=false;
+errorPrompt = document.getElementById("loginError");
+id=document.getElementById("id").value;
+password=document.getElementById("password").value;
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+
+xmlhttp.open("POST","http://localhost:8088/NWPU/loginServlet",false);
+xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+//xmlhttp.send("fname=Bill&lname=Gates");
+xmlhttp.send("id="+id+"&password="+password);
+
+if (xmlhttp.readyState==4 && xmlhttp.status==200)
+  {	
+
+	  if(xmlhttp.responseText=="incorrect"){
+		  errorPrompt.style.display = "block";
+		 result = false;
+	  }else{
+		  errorPrompt.style.display = "none";
+		  document.forms['form1'].action=xmlhttp.responseText;
+			document.cookie = "idtest="+"login";
+			document.cookie = "loginName="+id;
+		  result = true;
+	  }
+  }
+return result;
+}
+function test(){
+	document.cookie = "test="+"this is a test";
+	window.location.href= "http://localhost:8088/NWPU/loginPages/test.html";
+}
+function SetCookie(cookieName,cookieValue) {
+    /*当前日期*/
+    var today = new Date();
+    /*Cookie过期时间*/
+    var expire = new Date();
+    /*如果未设置nDays参数或者nDays为0，取默认值1*/
+   
+    /*计算Cookie过期时间*/
+    expire.setTime(today.getTime() + 1000*60*60*24);
+    /*设置Cookie值*/
+    document.cookie = cookieName + "=" + escape(cookieValue)
+        + ";expires=" + expire.toGMTString();
+}
+	
+	function signUpCheck(){
+		var id,userName,classNumber,emailSignUp,pwd,pwd_confirm,signUpError,xmlhttp;
+		id = document.getElementById("idsignup").value;
+		userName = document.getElementById("userName").value;
+		classNumber = document.getElementById("classNumber").value;
+		emailSignUp = document.getElementById("emailsignup").value;
+		pwd = document.getElementById("passwordsignup").value;
+		pwd_confirm = document.getElementById("passwordsignup_confirm").value;
+		signUpError = document.getElementById("signUpError");
+		if (window.XMLHttpRequest)
+		  {// code for IE7+, Firefox, Chrome, Opera, Safari
+		  xmlhttp=new XMLHttpRequest();
+		  }
+		else
+		  {// code for IE6, IE5
+		  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		  }
+		if(pwd != pwd_confirm){
+				signUpError.style.display = "block";
+				return false;
+			}else{
+		
+			xmlhttp.open("POST","http://localhost:8088/NWPU/recordApplicationServlet",false);
+ 			xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+ 			xmlhttp.send("id="+id+"&password="+pwd+"&email="+emailSignUp+"&userName="+userName+"&classNumber="+classNumber);
+ 		
+ 				  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+ 				    {	
+ 					  if(xmlhttp.responseText=="success"){			  
+ 								 signUpError.style.display = "none";
+ 								
+ 								  return true;				 
+ 					  }else if(xmlhttp.responseText=="error1"){
+ 						  signUpError.innerHTML="Sorry, the ID has been registered !";
+ 						  signUpError.style.display = "block";
+ 						 
+ 						return false;
+ 					  }else if(xmlhttp.responseText=="error2"){
+ 						  signUpError.innerHTML="Sorry, the email has been registered !";
+ 						  signUpError.style.display = "block";
+ 						 
+ 						return false;
+ 					  }else{
+ 						  signUpError.value="Register failly!";
+ 						  signUpError.style.display = "block";
+ 						 
+ 							return false;
+ 					  }
+ 				    }
+
+			} 
+	}
+	
+	var user=document.getElementById("emailsignup");
+	    user.onblur=function(){
+	        if(user.value){
+	            user.setCustomValidity("");//现将有输入时的提示设置为空
+	        }else if(user.validity.valueMissing){
+	            user.setCustomValidity("please input your email");  
+	        };
+	        if(user.validity.typeMismatch){ 
+	            user.setCustomValidity("please input your email");
+	        }
+	    };
+	
+</script>
+</html>

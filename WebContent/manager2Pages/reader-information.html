@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Responsive Bootstrap Advance Admin Template</title>
+<link rel="stylesheet" type="text/css" href="../css/default.css" />
+	<link rel="stylesheet" type="text/css" href="../css/component.css" />
+	<script src="../js/modernizr.custom.js"></script>
+<!-- BOOTSTRAP STYLES-->
+
+<!-- FONTAWESOME STYLES-->
+<link href="../assets/css/font-awesome.css" rel="stylesheet" />
+<!--CUSTOM BASIC STYLES-->
+<link href="../assets/css/basic.css" rel="stylesheet" />
+<!--CUSTOM MAIN STYLES-->
+<link href="../assets/css/custom.css" rel="stylesheet" />
+<link href="../css/base.css" type="text/css" rel="stylesheet" />
+
+<link href="../assets/css/bootstrap.css" rel="stylesheet" />
+<!-- GOOGLE FONTS-->
+<link href='http://fonts.googleapis.com/css?family=Open+Sans'
+	rel='stylesheet' type='text/css' />
+<style>
+.table th, td {
+	text-align: center;
+}
+
+
+
+
+
+</style>
+</head>
+<body onload="judgeState()">
+
+	<div id="wrapper" >
+		<nav class="navbar navbar-default navbar-cls-top " role="navigation"
+			style="margin-bottom: 0;background:#00CA79;">
+			<div class="navbar-header" >
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target=".sidebar-collapse">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="index.html">Librarian</a>
+			</div>
+
+			<div class="header-right" >
+
+			 <a href="#"
+					class="btn btn-danger" title="Logout" onclick="logout()"><i
+					class="fa fa-exclamation-circle fa-2x"></i></a>
+
+
+			</div>
+		</nav>
+		<!-- /. NAV TOP  -->
+		<nav class="navbar-default navbar-side" role="navigation">
+			<div class="sidebar-collapse">
+				<ul class="nav" id="main-menu">
+					<li>
+						<div class="user-img-div">
+							<img src="../assets/img/user.png" class="img-thumbnail" />
+
+							<div class="inner-text">
+								<span id="userName"></span>
+							</div>
+						</div>
+
+					</li>
+
+
+					
+					<li><a href="#" class="active-menu-top"><i
+							class="glyphicon glyphicon-user "></i>Reader Management <span
+							class="fa arrow"></span></a>
+						<ul class="nav nav-second-level collapse in">
+							<li><a class="active-menu" href="reader-information.html">Reader
+									Information Management</a></li>
+<!-- 							<li><a href="reader-category.html">Reader Category -->
+<!-- 									Management</a></li> -->
+							<li><a href="borrowing-rule.html">Reader Announcement
+									Management</a></li>
+
+
+						</ul></li>
+					<li><a href="#"><i class="glyphicon glyphicon-book "></i>Book
+							Management <span class="fa arrow"></span></a>
+						<ul class="nav nav-second-level">
+							<li><a href="book-information.html">Book Information
+									Management</a></li>
+<!-- 							<li><a href="book-category.html">Book Category -->
+<!-- 									Management</a></li> -->
+
+
+						</ul></li>
+					 <li><a href="return-book.html" ><i class="fa fa-bicycle "></i>Book
+							Borrowing Management </a>
+						</li>
+	<li><a href="query-overdue-record.html" ><i class="glyphicon glyphicon-stats  "></i>Book
+							Borrowing Statistics </a>
+						</li>
+
+				</ul>
+
+			</div>
+
+		</nav>
+		<!-- /. NAV SIDE  -->
+
+		<div id="page-wrapper">
+			<div id="page-inner">
+				<div class="row">
+					<div class="col-md-12">
+						<h1 class="page-head-line">Reader Information Management</h1>
+						<h1 class="page-subhead-line">
+							<button id="addUser" class="btn btn-default btn-lg"
+								type="button" style="margin-right: 18px;" onclick="addUser()">Add
+								Reader</button>
+							<button id="queryUser" class="btn btn-default btn-lg"
+								type="button" style="margin-right: 18px;" onclick="queryUser()">Query
+								Reader</button>
+							<button id="modifyUser" class="btn btn-default btn-lg"
+								type="button" style="margin-right: 18px;" onclick="modifyUser()">Modify
+								Reader</button>
+							<button id="deleteUser" class="btn btn-default btn-lg"
+								type="button" style="margin-right: 18px;" onclick="deleteUser()">Delete
+								Reader</button>
+						</h1>
+					</div>
+				</div>
+				<div class="row" id="addUserDiv" style="display: block;">
+
+					<table id="readerApplication" class="table table-striped">
+						<thead>
+							<tr>
+								<th>Order Number</th>
+								<th>School Work Number</th>
+								<th>Reader Name</th>
+								<th>Email</th>
+								<th>Class</th>
+								<th colspan="2" align="center" valign="middle">Operation</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+				</div>
+				<div class="row" id="queryUserDiv" style="display: none;">
+
+					<div class="form-group input-group col-md-6 col-md-offset-1" >
+<!-- 						<span id="type" class="input-group-addon" onclick="showType()">Reader ID</span> <span class="input-group-addon"><img alt="type" -->
+<!-- 							src="../images/search_ico.png"></span>  -->
+							<span  class="input-group-addon" style="background:none;border:none;"><div class="btn-group" style="width:10px;">
+  <button id="type" style="width:110px;"  type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    &nbsp&nbspReader &nbsp ID &nbsp
+  </button>
+  <ul class="dropdown-menu">
+    <li><a  href="#" onclick='changeType1()'>Reader ID</a></li>
+    <li><a href="#" onclick='changeType2()'>Reader Name</a></li>
+    <li><a href="#" onclick='changeType3()'>Reader Email</a></li>
+<li><a href="#" onclick='changeType4()'>Reader Class</a></li>
+  </ul>
+  </div>
+</span>
+
+							
+							<span class="input-group-btn"> 
+								
+							<input id="keywords" type="text"
+							class="form-control" placeholder="Enter Keywords" /> 
+								<button id="search" class="btn btn-primary" onclick="searchReader()">
+							 		<i class="fa fa-gear fa-spin"></i>&nbsp;&nbsp;SEARCH HERE
+								</button>
+						   </span>
+					</div>
+
+					<br />
+					<table id="readerApplication2" class="table table-striped">
+						<thead>
+							<tr>
+								<th>Order Number</th>
+								<th>School Work Number</th>
+								<th>Reader Name</th>
+								<th>Email</th>
+								<th>Class</th>
+								<th >Type</th>
+								<th>Borrow Books</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+				</div>
+
+				<div class="row" id="modifyUserDiv" style="display: none;">
+
+					<table id="readerApplication3" class="table table-striped">
+						<thead>
+							<tr>
+								<th>Order Number</th>
+								<th>School Work Number</th>
+								<th>Reader Name</th>
+								<th>Email</th>
+								<th>Class</th>
+								<th>Type</th>
+								<th>Borrow Books</th>
+								<th colspan="2" align="center" valign="middle">Operation</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+				</div>
+
+				<div class="row" id="deleteUserDiv" style="display: none;">
+
+					<table id="readerApplication4" class="table table-striped">
+						<thead>
+							<tr>
+								<th>Order Number</th>
+								<th>School Work Number</th>
+								<th>Reader Name</th>
+								<th>Email</th>
+								<th>Class</th>
+								<th>Type</th>
+								<th>Borrow Books</th>
+								<th align="center" valign="middle">Operation</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+	<!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+	<!-- JQUERY SCRIPTS -->
+	<script src="../assets/js/jquery-1.10.2.js"></script>
+	<!-- BOOTSTRAP SCRIPTS -->
+	<script src="../assets/js/bootstrap.js"></script>
+	<!-- METISMENU SCRIPTS -->
+	<script src="../assets/js/jquery.metisMenu.js"></script>
+	<!-- CUSTOM SCRIPTS -->
+	<script src="../assets/js/custom.js"></script>
+	<script src="../js/jquery-1.8.3.min.js"></script>
+	<script src="../js/jquery.select.js"></script>
+	<div class="md-overlay"></div><!-- the overlay element -->
+
+		<!-- classie.js by @desandro: https://github.com/desandro/classie -->
+		<script src="../js/classie.js"></script>
+		<script src="../js/modalEffects.js"></script>
+
+		<!-- for the blur effect -->
+		<!-- by @derSchepp https://github.com/Schepp/CSS-Filters-Polyfill -->
+		<script>
+			// this is important for IEs
+			var polyfilter_scriptpath = '/js/';
+		</script>
+		<script src="../js/cssParser.js"></script>
+		<script src="../js/css-filters-polyfill.js"></script>
+	<script>
+	function getReaderNameById(reader_id){
+		var xmlhttp, str;
+		if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+			xmlhttp = new XMLHttpRequest();
+		} else {// code for IE6, IE5
+			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		xmlhttp.onreadystatechange = function() {
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+
+				str = xmlhttp.responseText;
+
+			}
+		}
+		xmlhttp.open("POST","http://localhost:8088/NWPU/getReaderNameById", false);
+		xmlhttp.setRequestHeader("Content-type",
+				"application/x-www-form-urlencoded");
+		xmlhttp.send("reader_id="+reader_id);
+		if (str != null) {
+			
+			return str;
+		}
+	}
+    function  getObjsByClass (param) {
+        var tags = tags || document.getElementsByTagName("*");
+        var list = [];
+        for( var k in tags)
+        {
+            var tag = tags[k];
+            if(tag.params == param) {
+                document.write(tag.innerHTML);
+                list.push(tag);
+            }
+        }
+        return list;
+    }
+    	//清除cookie    
+		function DelCookie(name)
+{
+var exp = new Date();
+exp.setTime (exp.getTime() - 1);
+var cval = getCookie(name);
+document.cookie = name + "=" + cval + "; expires="+ exp.toGMTString();
+}
+	    function logout(){
+	    	var isLogout = confirm("Are you sure you want to log out?");
+			if(isLogout == true){
+ 			DelCookie("idtest");
+	    	window.location.href="http://localhost:8088/NWPU/manager2Pages/login.html";
+			}
+	    }
+
+	    function changeType1(){
+	    	queryUser();
+	    	document.getElementById("queryUser").style.background = "#00CA79";
+	    	document.getElementById("type").innerHTML = "&nbsp&nbspReader &nbsp ID &nbsp";
+	    	document.getElementById("type").style.background="rgb(0, 202, 121)";
+	    	document.cookie = "type=1";
+	    	document.getElementById("keywords").value ="";
+	    }
+		function changeType2(){
+			queryUser();
+			document.getElementById("queryUser").style.background = "#00CA79";
+			document.getElementById("type").innerText = "Reader Name ";
+			document.getElementById("type").style.background="rgb(0, 202, 121)";
+			document.cookie = "type=2";
+			document.getElementById("keywords").value ="";
+	    }
+		function changeType3(){
+			queryUser();
+			document.getElementById("queryUser").style.background = "#00CA79";
+			document.getElementById("type").innerText = "Reader Email ";
+			document.getElementById("type").style.background="rgb(0, 202, 121)";
+			document.cookie = "type=3";
+			document.getElementById("keywords").value ="";
+	    }
+		function changeType4(){
+			queryUser();
+			document.getElementById("queryUser").style.background = "#00CA79";
+			document.getElementById("type").innerText = "Reader Class ";
+			document.getElementById("type").style.background="rgb(0, 202, 121)";
+			document.cookie = "type=4";
+			document.getElementById("keywords").value ="";
+	    }
+		function showType() {
+			document.getElementById("otherType").style.display = "block";
+		}
+		function addUser() {
+			document.getElementById("addUserDiv").style.display = "block";
+			document.getElementById("queryUserDiv").style.display = "none";
+			document.getElementById("modifyUserDiv").style.display = "none";
+			document.getElementById("deleteUserDiv").style.display = "none";
+			clearTbody("readerApplication");
+			document.getElementById("addUser").style.background = "#00CA79";
+			document.getElementById("queryUser").style.background = "#ffffff";
+			document.getElementById("modifyUser").style.background = "#ffffff";
+			document.getElementById("deleteUser").style.background = "#ffffff";
+			addHero();
+		}
+		function queryUser() {
+			document.getElementById("addUserDiv").style.display = "none";
+			document.getElementById("queryUserDiv").style.display = "block";
+			document.getElementById("modifyUserDiv").style.display = "none";
+			document.getElementById("deleteUserDiv").style.display = "none";
+			clearTbody("readerApplication2");
+			document.getElementById("addUser").style.background = "#ffffff";
+			document.getElementById("queryUser").style.background = "#00CA79";
+			document.getElementById("modifyUser").style.background = "#ffffff";
+			document.getElementById("deleteUser").style.background = "#ffffff";
+			var userApplicationServlet = "http://localhost:8088/NWPU/getUserServlet";
+			var usersJson = analyseData(userApplicationServlet);
+			if (usersJson.length != -1) {
+				for (var i = 0; i < usersJson.length; i++) {
+					var z = $("readerApplication2").rows.length;
+					var tableRow = $("readerApplication2").insertRow(z);
+
+					var Cell_0 = tableRow.insertCell(0);
+					Cell_0.innerHTML = z;
+
+					var Cell_1 = tableRow.insertCell(1);
+					Cell_1.innerHTML = usersJson[i].id;
+
+					var Cell_2 = tableRow.insertCell(2);
+					Cell_2.innerHTML = usersJson[i].userName;
+
+					var Cell_3 = tableRow.insertCell(3);
+					Cell_3.innerHTML = usersJson[i].email;
+
+					var Cell_4 = tableRow.insertCell(4);
+					Cell_4.innerHTML = usersJson[i].classNumber;
+					
+					var Cell_5 = tableRow.insertCell(5);
+					Cell_5.innerHTML = usersJson[i].type;
+					
+					var Cell_6 = tableRow.insertCell(6);
+					Cell_6.innerHTML = usersJson[i].borrow_books;
+					//var Cell_4 = tableRow.insertCell(4);
+					//Cell_4.innerHTML = "<button class='btn btn-primary' type='submit' onclick='queryUserItem(this.parentNode.parentNode.rowIndex)'>More</button>";
+				}
+			}
+
+		}
+		function searchReader(){
+			
+			clearTbody("readerApplication2");
+			var type = getCookie("type");
+			//clearCookie("type");
+			var keywords = document.getElementById("keywords").value;
+			var userApplicationServlet = "http://localhost:8088/NWPU/getUserServlet";
+			var usersJson = analyseData(userApplicationServlet);
+			if (usersJson.length != -1) {
+				for (var i = 0; i < usersJson.length; i++) {
+					var attr;
+					if(type == "1"){
+						 attr = usersJson[i].id;
+					}else if(type == "2"){
+						attr = usersJson[i].userName;
+					}else if(type == "3"){
+						attr = usersJson[i].email;
+					}else if(type == "4"){
+						attr = usersJson[i].classNumber;
+					}
+					//alert(attr+"  "+keywords);
+					if(isContains(attr,keywords)){
+					var z = $("readerApplication2").rows.length;
+					var tableRow = $("readerApplication2").insertRow(z);
+
+					var Cell_0 = tableRow.insertCell(0);
+					Cell_0.innerHTML = z;
+
+					var Cell_1 = tableRow.insertCell(1);
+					Cell_1.innerHTML = usersJson[i].id;
+
+					var Cell_2 = tableRow.insertCell(2);
+					Cell_2.innerHTML = usersJson[i].userName;
+
+					var Cell_3 = tableRow.insertCell(3);
+					Cell_3.innerHTML = usersJson[i].email;
+
+					var Cell_4 = tableRow.insertCell(4);
+					Cell_4.innerHTML = usersJson[i].classNumber;
+					
+					var Cell_5 = tableRow.insertCell(5);
+					Cell_5.innerHTML = usersJson[i].type;
+					
+					var Cell_6 = tableRow.insertCell(6);
+					Cell_6.innerHTML = usersJson[i].borrow_books;
+					//var Cell_4 = tableRow.insertCell(4);
+					//Cell_4.innerHTML = "<button class='btn btn-danger' type='submit' onclick='queryUserItem(this.parentNode.parentNode.rowIndex)'>More</button>";
+				}
+				}
+			}
+			
+			
+		}
+
+		function isContains(str, substr) {
+		    return str.indexOf(substr) >= 0;
+		}
+		//清除cookie    
+		function clearCookie(name) {    
+		    setCookie(name, "", -1);    
+		}
+		function modifyUser() {
+			document.getElementById("addUserDiv").style.display = "none";
+			document.getElementById("queryUserDiv").style.display = "none";
+			document.getElementById("modifyUserDiv").style.display = "block";
+			document.getElementById("deleteUserDiv").style.display = "none";
+			clearTbody("readerApplication3");
+			document.getElementById("addUser").style.background = "#ffffff";
+			document.getElementById("queryUser").style.background = "#ffffff";
+			document.getElementById("modifyUser").style.background = "#00CA79";
+			document.getElementById("deleteUser").style.background = "#ffffff";
+			var userApplicationServlet = "http://localhost:8088/NWPU/getUserServlet";
+			var usersJson = analyseData(userApplicationServlet);
+			if (usersJson.length != -1) {
+				for (var i = 0; i < usersJson.length; i++) {
+					var z = $("readerApplication3").rows.length;
+					var tableRow = $("readerApplication3").insertRow(z);
+
+					var Cell_0 = tableRow.insertCell(0);
+					Cell_0.innerHTML = z;
+
+					var Cell_1 = tableRow.insertCell(1);
+					Cell_1.innerHTML = usersJson[i].id;
+
+					var Cell_2 = tableRow.insertCell(2);
+					Cell_2.innerHTML = usersJson[i].userName;
+
+					var Cell_3 = tableRow.insertCell(3);
+					Cell_3.innerHTML = usersJson[i].email;
+
+					var Cell_4 = tableRow.insertCell(4);
+					Cell_4.innerHTML = usersJson[i].classNumber;
+					
+					var Cell_5 = tableRow.insertCell(5);
+					Cell_5.innerHTML = usersJson[i].type;
+					
+					var Cell_6 = tableRow.insertCell(6);
+					Cell_6.innerHTML = usersJson[i].borrow_books;
+					
+					var Cell_7 = tableRow.insertCell(7);
+					Cell_7.innerHTML = "<button class='btn btn-warning' type='submit' onclick='modifyUserItem(this.parentNode.parentNode.rowIndex)'>Modify</button>";
+				}
+			}
+
+		}
+		function deleteUser() {
+
+			//document.getElementById("readerApplication").setAttribute("className","table table-striped");
+			document.getElementById("addUserDiv").style.display = "none";
+			document.getElementById("queryUserDiv").style.display = "none";
+			document.getElementById("modifyUserDiv").style.display = "none";
+			document.getElementById("deleteUserDiv").style.display = "block";
+			clearTbody("readerApplication4");
+			document.getElementById("addUser").style.background = "#ffffff";
+			document.getElementById("queryUser").style.background = "#ffffff";
+			document.getElementById("modifyUser").style.background = "#ffffff";
+			document.getElementById("deleteUser").style.background = "#00CA79";
+
+			var userApplicationServlet = "http://localhost:8088/NWPU/getUserServlet";
+			var usersJson = analyseData(userApplicationServlet);
+			if (usersJson.length != -1) {
+
+				for (var i = 0; i < usersJson.length; i++) {
+
+					var z = $("readerApplication4").rows.length;
+					var tableRow = $("readerApplication4").insertRow(z);
+
+					var Cell_0 = tableRow.insertCell(0);
+					Cell_0.innerHTML = z;
+
+					var Cell_1 = tableRow.insertCell(1);
+					Cell_1.innerHTML = usersJson[i].id;
+
+					var Cell_2 = tableRow.insertCell(2);
+					Cell_2.innerHTML = usersJson[i].userName;
+
+					var Cell_3 = tableRow.insertCell(3);
+					Cell_3.innerHTML = usersJson[i].email;
+
+					var Cell_4 = tableRow.insertCell(4);
+					Cell_4.innerHTML = usersJson[i].classNumber;
+					
+					var Cell_5 = tableRow.insertCell(5);
+					Cell_5.innerHTML = usersJson[i].type;
+					
+					var Cell_6 = tableRow.insertCell(6);
+					Cell_6.innerHTML = usersJson[i].borrow_books;
+					var Cell_7 = tableRow.insertCell(7);
+					Cell_7.innerHTML = "<button class='btn btn-danger' type='submit' onclick='deleteUserItem(this.parentNode.parentNode.rowIndex)'>Delete</button>";
+				}
+			}
+
+		}
+		function modifyUserItem(rowIndex) {
+			var userApplicationServlet = "http://localhost:8088/NWPU/getUserServlet";
+			var usersJson = analyseData(userApplicationServlet);
+			var index = rowIndex - 1;
+			var user = usersJson[index];
+			document.cookie = "state=1";
+			document.cookie = "id=" + user.id;
+			document.cookie = "userName=" + user.userName;
+			document.cookie = "email=" + user.email;
+			document.cookie = "classNumber=" + user.classNumber;
+			document.cookie = "borrow_books=" + user.borrow_books;
+			document.cookie = "usertype=" + user.type;
+			//alert(user.id+" "+user.userName+" "+user.email+" "+user.classNumber);
+			window.location.href = "http://localhost:8088/NWPU/manager2Pages/modify-user.html#toregister";
+
+		}
+		function deleteUserItem(rowIndex) {
+			var determination = confirm("Are you sure you want to delete this user?");
+			if (determination == true) {
+				var userApplicationServlet = "http://localhost:8088/NWPU/getUserServlet";
+				var usersJson = analyseData(userApplicationServlet);
+				var index = rowIndex - 1;
+				var user = usersJson[index];
+				var xmlhttp, str;
+				if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+					xmlhttp = new XMLHttpRequest();
+				} else {// code for IE6, IE5
+					xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+				}
+				xmlhttp.onreadystatechange = function() {
+					if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+						str = xmlhttp.responseText;
+						if(str == "failed"){
+							alert("Sorry,you can not delete this user!");
+						}else{
+							alert("Successfully deleted");
+						}
+						
+						deleteUser();
+					}
+				}
+				xmlhttp.open("POST",
+						"http://localhost:8088/NWPU/deleteUserServlet", false);
+				xmlhttp.setRequestHeader("Content-type",
+						"application/x-www-form-urlencoded");
+				xmlhttp.send("id=" + user.id + "&password=" + user.password
+						+ "&email=" + user.email + "&userName=" + user.userName
+						+ "&classNumber=" + user.classNumber);
+			}
+
+		}
+		function clearTbody(tableName) {
+
+			var table = document.getElementById(tableName);
+			var tableLength = table.rows.length;
+			if (tableLength >= 1) {
+				for (var int = 1; int < tableLength; int++) {
+					table.deleteRow(1);
+
+				}
+			}
+
+		}
+		function $(id) {
+			return document.getElementById(id);
+		}
+		function addHero() {
+			//document.getElementById("readerApplication").setAttribute("className","table table-striped");
+			document.getElementById("addUser").style.background = "#00CA79";
+			var userApplicationServlet = "http://localhost:8088/NWPU/getUserApplicationRecord";
+			var usersJson = analyseData(userApplicationServlet);
+			if (usersJson.length != -1) {
+				for (var i = 0; i < usersJson.length; i++) {
+					var z = $("readerApplication").rows.length;
+					var tableRow = $("readerApplication").insertRow(z);
+
+					var Cell_0 = tableRow.insertCell(0);
+					Cell_0.innerHTML = z;
+
+					var Cell_1 = tableRow.insertCell(1);
+					Cell_1.innerHTML = usersJson[i].id;
+
+					var Cell_2 = tableRow.insertCell(2);
+					Cell_2.innerHTML = usersJson[i].userName;
+
+					var Cell_3 = tableRow.insertCell(3);
+					Cell_3.innerHTML = usersJson[i].email;
+
+					var Cell_4 = tableRow.insertCell(4);
+					Cell_4.innerHTML = usersJson[i].classNumber;
+					
+					var Cell_5 = tableRow.insertCell(5);
+
+					Cell_5.innerHTML = "<button class='btn btn-primary' type='submit' onclick='agree(this.parentNode.parentNode.rowIndex)'>Agree</button>";
+
+					var Cell_6 = tableRow.insertCell(6);
+
+					Cell_6.innerHTML = "<button class='btn btn-danger' type='submit' onclick='deny(this.parentNode.parentNode.rowIndex)'>Deny</button>";
+				}
+			}
+
+		}
+
+		function deny(rowIndex) {
+			var determination = confirm("Are you sure you want to delete the user application?");
+			if (determination == true) {
+				var userApplicationServlet = "http://localhost:8088/NWPU/getUserApplicationRecord";
+				var usersJson = analyseData(userApplicationServlet);
+				var index = rowIndex - 1;
+				var user = usersJson[index];
+				var xmlhttp, str;
+				if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+					xmlhttp = new XMLHttpRequest();
+				} else {// code for IE6, IE5
+					xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+				}
+				xmlhttp.onreadystatechange = function() {
+					if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+						alert("Successfully deleted");
+						addUser();
+					}
+				}
+				xmlhttp.open("POST",
+						"http://localhost:8088/NWPU/deleteApplicationServlet",
+						false);
+				xmlhttp.setRequestHeader("Content-type",
+						"application/x-www-form-urlencoded");
+				xmlhttp.send("id=" + user.id + "&password=" + user.password
+						+ "&email=" + user.email + "&userName=" + user.userName
+						+ "&classNumber=" + user.classNumber);
+			}
+
+		}
+
+		function agree(rowIndex) {
+			var userApplicationServlet = "http://localhost:8088/NWPU/getUserApplicationRecord";
+			var usersJson = analyseData(userApplicationServlet);
+			var index = rowIndex - 1;
+			var user = usersJson[index];
+			var xmlhttp, str;
+			if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+				xmlhttp = new XMLHttpRequest();
+			} else {// code for IE6, IE5
+				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			xmlhttp.onreadystatechange = function() {
+				if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+					alert("Add a reader Successfully");
+					addUser();
+
+				}
+			}
+			xmlhttp.open("POST", "http://localhost:8088/NWPU/addUserServlet",
+					false);
+			xmlhttp.setRequestHeader("Content-type",
+					"application/x-www-form-urlencoded");
+			xmlhttp.send("id=" + user.id + "&password=" + user.password
+					+ "&email=" + user.email + "&userName=" + user.userName
+					+ "&classNumber=" + user.classNumber);
+
+		}
+
+		function analyseData(userApplicationServlet) {
+
+			var xmlhttp, str;
+			if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+				xmlhttp = new XMLHttpRequest();
+			} else {// code for IE6, IE5
+				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			xmlhttp.onreadystatechange = function() {
+				if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+
+					str = xmlhttp.responseText;
+
+				}
+			}
+			xmlhttp.open("POST", userApplicationServlet, false);
+			xmlhttp.setRequestHeader("Content-type",
+					"application/x-www-form-urlencoded");
+			xmlhttp.send();
+			if (str != null) {
+				var usersJson = eval('(' + str + ')');
+				return usersJson;
+			}
+		}
+		   function init5() {
+		        var username = getCookie("idtest");
+		       if(username!="login"){
+		    	   window.location.href="http://localhost:8088/NWPU/manager2Pages/login.html";
+		    	  //alert("not log in");
+		       }
+		    }
+		function judgeState() {
+			document.getElementById("userName").innerHTML = getReaderNameById(getCookie("loginName"));
+			init5();
+			document.getElementById("type").innerHTML = "&nbsp&nbspReader &nbsp ID &nbsp";
+	    	document.getElementById("type").style.background="rgb(0, 202, 121)";
+	    	document.cookie = "type=1";
+			
+			var state = getCookie("state");
+			if (state == "1") {
+				modifyUser();
+				document.cookie = "state=0";
+			} else {
+				addUser();
+				
+			}
+		}
+		function getCookie(cname) {
+			var ss = document.cookie;
+			var name = cname + "=";
+			var ca = document.cookie.split(';');
+			for (var i = 0; i < ca.length; i++) {
+				var c = ca[i].trim();
+				if (c.indexOf(name) == 0)
+					return c.substring(name.length, c.length);
+			}
+			return "";
+		}
+		function init() {
+
+			var overlay = document.querySelector( '.md-overlay' );
+		
+			[].slice.call( document.querySelectorAll( '.test' ) ).forEach( function( el, i ) {
+
+				var modal = document.querySelector( '#' + el.getAttribute( 'data-modal' ) ),
+					close = modal.querySelector( '.md-close' );
+
+				function removeModal( hasPerspective ) {
+					classie.remove( modal, 'md-show' );
+
+					if( hasPerspective ) {
+						classie.remove( document.documentElement, 'md-perspective' );
+					}
+				}
+
+				function removeModalHandler() {
+					removeModal( classie.has( el, 'md-setperspective' ) ); 
+				}
+
+				el.addEventListener( 'click', function( ev ) {
+				
+					classie.add( modal, 'md-show' );
+					overlay.removeEventListener( 'click', removeModalHandler );
+					overlay.addEventListener( 'click', removeModalHandler );
+
+					if( classie.has( el, 'md-setperspective' ) ) {
+						setTimeout( function() {
+							classie.add( document.documentElement, 'md-perspective' );
+						}, 25 );
+					}
+				});
+
+				close.addEventListener( 'click', function( ev ) {
+					ev.stopPropagation();
+					removeModalHandler();
+				});
+
+			} );
+
+		}
+	</script>
+</body>
+</html>

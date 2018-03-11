@@ -1,0 +1,28 @@
+@charset "utf-8";
+/*
+www.198zone.com
+*/
+body{color:#000;background:#FFF;font:12px/1.6 Verdana, Helvetica, sans-serif;text-align:center;}
+*{margin:0;padding:0;}
+input,select{font-size:12px;vertical-align:middle;}
+body div{text-align:left;}
+textarea,input{word-wrap:break-word;word-break:break-all;padding:0px;}
+li{list-style-type:none;}
+img{border:0 none;}
+a{text-decoration:none;color:#333; }
+a:hover{color:#1974A1; }
+a:link, a:visited{color:#333;text-decoration: none;outline: none;}
+a:hover{color:#0E4470;text-decoration: none;}
+.search{border:2px solid #f58400;height:35px;margin:40px auto 0 auto;width:525px;}
+.search select{display:none;}
+.search .select_box{font-size:12px;color:#999999;width:100px;line-height:35px;float:left;position:relative;}
+.search .select_showbox{height:35px;background:url("../images/search_ico.png") no-repeat 80px center;text-indent:1.5em;}
+.search .select_showbox.active{background:url("../images/search_ico_hover.png") no-repeat 80px center;}
+.search .select_option{border:2px solid #f58400;border-top:none;display:none;left:-2px;top:35px;position:absolute;z-index:99;background:#fff;}
+.search .select_option li{text-indent:1.5em;width:90px;cursor:pointer;}
+.search .select_option li.selected{background-color:#F3F3F3;color:#999;}
+.search .select_option li.hover{background:#BEBEBE;color:#fff;}
+
+.search input.inp_srh,.search input.btn_srh{border:none;background:none;height:35px;line-height:35px;float:right}
+.search input.inp_srh{outline:none;width:365px;}
+.search input.btn_srh{background:#f58400;color:#FFF;font-family:"微软雅黑";font-size:15px;width:60px;}

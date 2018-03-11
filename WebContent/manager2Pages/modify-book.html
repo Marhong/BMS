@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6 lt8"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7 lt8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8 lt8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="UTF-8" />
+<!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">  -->
+<title>Login and Registration Form with HTML5 and CSS3</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description"
+	content="Login and Registration Form with HTML5 and CSS3" />
+<meta name="keywords"
+	content="html5, css3, form, switch, animation, :target, pseudo-class" />
+<meta name="author" content="Codrops" />
+<link rel="shortcut icon" href="../../favicon.ico">
+<link rel="stylesheet" type="text/css" href="../css/demo.css" />
+<link rel="stylesheet" type="text/css" href="../css/style.css" />
+<link rel="stylesheet" type="text/css" href="../css/animate-custom.css" />
+<style>
+input[type="number"] {
+	-moz-appearance: textfield;
+}
+
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+	-webkit-appearance: none !important;
+	margin: 0;
+}
+</style>
+</head>
+<body onload="showBookInformation()">
+	<div class="container">
+
+		<div class="codrops-top"></div>
+		<header>
+			<h1>
+				
+			</h1>
+			<nav class="codrops-demos"></nav>
+		</header>
+	
+		<section>
+			<div id="container_demo">
+				<a class="hiddenanchor" id="toregister"></a> <a class="hiddenanchor"
+					id="tologin"></a>
+				<div id="wrapper">
+
+					<div id="register" class="animate form">
+						                            <form  action="http://localhost:8088/NWPU/manager2Pages/book-information.html" autocomplete="on" onsubmit="return signUpCheck()" method="post"> 
+                                <h1> Modify Book Information  </h1> 
+                   	<p>
+								<label for="bookid" class="bookid" data-icon="p">
+									ID </label>
+							    <input id="bookid" name="bookid" disabled="disabled" type="text" placeholder="the ID of this book" title=" " />
+							</p>
+							<p>
+								<label for="isbn" class="isbn" data-icon="u"> ISBN </label>  <input id="isbn" name="isbn"
+									disabled="disabled"
+									placeholder=" ISBN Number" type="number" title=" " />
+							</p>
+							<p>
+								<label for="bookName" class="bookName" data-icon="p">
+									Book Name </label> <input id="bookName" name="bookName" 
+									 required
+									oninvalid="setCustomValidity('please input book name')"
+									oninput="setCustomValidity('')" type="text"
+									placeholder="book name" title=" " />
+							</p>
+														<p>
+								<label for="writerName" class="writerName" data-icon="p">
+									Writer Name </label> <input id="writerName" name="writerName"  required
+									oninvalid="setCustomValidity('please input writer name')"
+									oninput="setCustomValidity('')" type="text"
+									placeholder="writer name" title=" " />
+							</p>
+                                <p> 
+                                    <label for="type" class="type" data-icon="e" > Type</label>
+                                  
+                                     <select id="type" ><option>Politics</option><option>Economy</option><option>Military</option><option>Literature</option></select>
+                                </p>
+
+							<p>
+								<label for="location" class="location" data-icon="u"> Location</label> <input id="location" name="location"
+									required
+									oninvalid="setCustomValidity('please input the  location of this book')"
+									oninput="setCustomValidity('')"
+									onchange="setCustomValidity('')"
+									placeholder="the location of this book" type="text" title=" "  />
+							</p>
+							<p>
+								<label for="copy" class="copy" data-icon="p">
+									Copy </label>
+							    <input id="copy" name="copy" disabled="disabled" type="number" placeholder="the quantity of this book" title=" " />
+							</p>
+														<p>
+								<label for="lentout" class="lentout" data-icon="p">
+									Lent Out Number </label>
+							    <input id="lentout" name="lentout" disabled="disabled" type="number" placeholder="the quantity of this book that has been lent out" title=" " />
+							</p>
+							<p>
+								<label for="description" class="description" data-icon="p">
+									Description</label> <input id="description" name="description" required
+									oninvalid="setCustomValidity('please input the description of this book')"
+									oninput="setCustomValidity('')" type="text"
+									placeholder="the description of this book" title=" " />
+							</p>
+														<p>
+								<label for="date" class="date" data-icon="p">
+									Date</label> <input id="date" name="date" disabled="disabled" type="text"
+									placeholder="the date of this book that it was logged in" title="" />
+							</p>
+							<p id="signUpError" class="keeplogin"
+								style="color: red; display: none">the confirmed password is not equal to the password
+								</p>
+                             <p class="signin button"> 
+									 <input type="submit" value="Save" /> 
+								</p>
+                                <p class="change_link">  
+									
+									<a href="#" class="to_register" onclick="back()"> Cancel </a>
+								</p>
+                            </form>
+					</div>
+
+				</div>
+			</div>
+		</section>
+	</div>
+</body>
+<script>
+function showBookInformation(){
+//	var state = getCookie("state");
+	var id = getCookie("id");
+	var isbn = getCookie("isbn");
+	var name = getCookie("name");
+	var writer = getCookie("writer");
+	var location = getCookie("location");
+	var copy = getCookie("copy");
+	var lentout = getCookie("lentout");
+	var type = getCookie("type");
+	var description = getCookie("description");
+	var date = getCookie("date");
+ 
+	document.getElementById("bookid").value = id;
+	document.getElementById("isbn").value = isbn;
+	document.getElementById("bookName").value = name;
+	document.getElementById("writerName").value = writer;
+	document.getElementById("type").value = type;
+	document.getElementById("copy").value = copy;
+	document.getElementById("lentout").value = lentout;
+	document.getElementById("description").value = description;
+	document.getElementById("date").value = date;
+	document.getElementById("location").value = location;
+	clearCookie("id");
+	clearCookie("isbn");
+	clearCookie("name");
+	clearCookie("writer");
+	clearCookie("location");
+	clearCookie("type");
+	clearCookie("copy");
+	clearCookie("lentout");
+	clearCookie("description");
+	clearCookie("date");
+}
+function back(){
+	document.cookie = "status=1";
+	window.location.href="book-information.html"
+	
+}
+function getCookie(cname)
+{
+    var ss = document.cookie;
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0; i<ca.length; i++)
+    {
+        var c = ca[i].trim();
+        if (c.indexOf(name)==0)
+            return c.substring(name.length,c.length);
+    }
+    return "";
+}
+//清除cookie    
+function clearCookie(name) {    
+    setCookie(name, "", -1);    
+}
+	function signUpCheck(){
+		var id,isbn,bookName,writerName,type,location,copy,description,lentout,signUpError,xmlhttp,result=false; 
+		var date;
+		
+		id = document.getElementById("bookid").value;
+		isbn = document.getElementById("isbn").value;
+		bookName = document.getElementById("bookName").value;
+		writerName = document.getElementById("writerName").value;
+		type = document.getElementById("type").value;
+		location = document.getElementById("location").value;
+		copy = document.getElementById("copy").value;
+		description = document.getElementById("description").value;
+		lentout = document.getElementById("lentout").value;
+		date = document.getElementById("date").value;
+		if (window.XMLHttpRequest)
+		  {// code for IE7+, Firefox, Chrome, Opera, Safari
+		  xmlhttp=new XMLHttpRequest();
+		  }
+		else
+		  {// code for IE6, IE5
+		  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		  }
+		xmlhttp.onreadystatechange=function()
+		  {
+		  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		    {	
+			  if(xmlhttp.responseText=="success"){
+				 // alert(xmlhttp.responseText);
+				 document.cookie = "status=1";
+				return true;
+			  }
+		    
+		    }
+		  }
+		xmlhttp.open("POST","http://localhost:8088/NWPU/updateBookServlet",false);
+		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		//xmlhttp.send("fname=Bill&lname=Gates");
+		xmlhttp.send("isbn="+isbn+"&bookName="+bookName+"&id="+id+"&writerName="+writerName+"&type="+type+"&location="+location+"&copy="+copy+"&description="+description+"&date="+date+"&lentout="+lentout);
+		
+
+	}
+	
+	var user=document.getElementById("copy");
+	    user.onblur=function(){
+	        if(user.validity.valueMissing){
+	        	
+	            user.setCustomValidity("please input the quantity of this book");//现将有输入时的提示设置为空
+	        }else if(user.value<1){
+	            user.setCustomValidity("the quantity must be greater than 0");  
+	        };
+	        if(user.validity.typeMismatch){ 
+	            user.setCustomValidity("please input the quantity of this book");
+	        }
+	    };
+	
+</script>
+</html>
